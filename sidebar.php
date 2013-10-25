@@ -1,0 +1,5 @@
+<?php
+/**
+ * UDSSL Sidebar
+ */
+?>
