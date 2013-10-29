@@ -61,29 +61,44 @@ class UDSSL_Sidebar{
      * UDSSL Single Sidebar Right
      */
     function single_right() {
+        if('udssl-time-tracker' == get_post_type()){
+            /**
+             * Plugin Sidebar
+             */
+            echo $this->get_plugin_sidebar();
+            return true;
+        } elseif(('projects' == get_post_type())) {
+            if(has_term('WLCS', 'udssl-project' ) ) {
+                /**
+                 * WLCS Sidebar
+                 */
+                echo $this->get_wlcs_sidebar();
+                return true;
+            }
+        }
         /**
          * Search Form
          */
-        $search = '<h3>Search UDSSL</h3>
-        <form class="form-inline" role="form" id="searchForm" action="' . home_url() . '/search/" method="POST">
-          <div class="form-group">
-            <input type="text" class="form-control" name="search-text" id="search-text" placeholder="USB Solutions">
-          </div>
-          <button type="submit" class="btn btn-default">Search</button>
-        </form>';
-        echo $search;
+        echo $this->get_search_form();
 
         echo '<hr />';
 
         /**
          * Recent Posts
          */
+        echo $this->get_recent_posts();
+    }
+
+    /**
+     * Recent Posts
+     */
+    function get_recent_posts(){
         $args = array(
-            'post_type' => array('post', 'projects'),
+            'post_type' => array('post'),
             'posts_per_page' => 10
         );
         $the_query = new WP_Query( $args );
-        $recent = '<ul class="list-group">';
+        $recent = '<h3>Recent Posts</h3><ul class="list-group">';
 
         if($the_query->have_posts()){
             while($the_query->have_posts()){
@@ -104,14 +119,21 @@ class UDSSL_Sidebar{
             }
         }
         $recent .= '</ul>';
+        return $recent;
+    }
 
-        echo '<h3>Recent Posts</h3>';
-        echo $recent;
-
-
-        if ( ! dynamic_sidebar('Sidebar Right') ) :
-            echo '';
-        endif;
+    /**
+     * Search Form
+     */
+    function get_search_form(){
+        $search = '<h3>Search UDSSL</h3>
+        <form class="form-inline" role="form" id="searchForm" action="' . home_url() . '/search/" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="search-text" id="search-text" placeholder="USB Solutions">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>';
+        return $search;
     }
 
     /**
@@ -154,6 +176,85 @@ class UDSSL_Sidebar{
             </ul>
         </div>';
         return $contact;
+    }
+
+    /**
+     * Time Tracker Sidebar
+     */
+    function get_plugin_sidebar(){
+        $args = array(
+            'post_type' => array('udssl-time-tracker'),
+            'posts_per_page' => -1,
+            'order' => 'ASC'
+        );
+        $the_query = new WP_Query( $args );
+        $plugin_pages = '<h2 class="text-primary text-right">UDSSL Time Tracker</h2>';
+        $plugin_pages .= '<p class="text-muted text-right">WordPress Time Tracker Plugin</p>';
+        $plugin_pages .= '<div class="bs-example" style="padding-bottom: 24px; text-align:right;">
+        <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>
+        </div>';
+        $plugin_pages .= '<ul class="list-group">';
+
+        if($the_query->have_posts()){
+            while($the_query->have_posts()){
+                $the_query->the_post();
+                $plugin_pages .= '<li class="list-group-item">';
+                $plugin_pages .= '<a href="' . get_permalink() . '" ><h4>';
+                $plugin_pages .= get_the_title() . '</h4></a>';
+
+                $id = get_the_ID();
+                $seo = get_post_meta($id, 'seo', true);
+                if($seo){
+                    $plugin_pages .= '<p>' . $seo['description'] . '<br /><span class="label label-info">';
+                }
+
+                $plugin_pages .= 'Time Tracker</span> ' .
+                    '<a class="read-more" href="' . get_permalink() . '" title="' . get_the_title() . '" ><span class="label label-success">Read More</span></a></p>' . PHP_EOL;
+                $plugin_pages .= '</li>';
+            }
+        }
+        $plugin_pages .= '</ul>';
+        return $plugin_pages;
+    }
+
+    /**
+     * WLCS Sidebar
+     */
+    function get_wlcs_sidebar(){
+        $args = array(
+            'post_type' => array('projects'),
+            'udssl-projects' => 'WLCS',
+            'posts_per_page' => -1,
+            'order' => 'ASC'
+        );
+        $the_query = new WP_Query( $args );
+        $wlcs_pages = '<h3 class="text-primary text-right">Water Level Control System</h3>';
+        $wlcs_pages .= '<p class="text-muted text-right">Computer Aided Control with LabVIEW</p>';
+        $wlcs_pages .= '<div class="bs-example" style="padding-bottom: 24px; text-align:right;">
+        <a href="' . get_home_url() . '/computer-aided-control-systems/" class="btn btn-info" title="Computer Aided Control Project | Water Level Control"> <span class="glyphicon glyphicon-cog"></span> Control Engineering</a>
+        </div>';
+        $wlcs_pages .= '<ul class="list-group">';
+
+        if($the_query->have_posts()){
+            while($the_query->have_posts()){
+                $the_query->the_post();
+                $wlcs_pages .= '<li class="list-group-item">';
+                $wlcs_pages .= '<a href="' . get_permalink() . '" ><h4>';
+                $wlcs_pages .= get_the_title() . '</h4></a>';
+
+                $id = get_the_ID();
+                $seo = get_post_meta($id, 'seo', true);
+                if($seo){
+                    $wlcs_pages .= '<p>' . $seo['description'] . '<br /><span class="label label-info">';
+                }
+
+                $wlcs_pages .= 'WLCS</span> ' .
+                    '<a class="read-more" href="' . get_permalink() . '" title="' . get_the_title() . '" ><span class="label label-success">Read More</span></a></p>' . PHP_EOL;
+                $wlcs_pages .= '</li>';
+            }
+        }
+        $wlcs_pages .= '</ul>';
+        return $wlcs_pages;
     }
 }
 ?>

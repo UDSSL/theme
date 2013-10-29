@@ -15,6 +15,7 @@ class UDSSL_WPTheme{
         $this->replace_array = array(
             'assets' => get_home_url(). '/assets/',
             'theme' => get_home_url(). '/udssl-theme/',
+            'plugin' => get_home_url(). '/udssl-time-tracker/',
             'root' => get_home_url(). '/'
         );
         add_filter('the_content', array($this, 'the_content'));

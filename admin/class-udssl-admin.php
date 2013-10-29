@@ -295,13 +295,13 @@ class UDSSL_Admin{
           * Twitter Save Settings - Reset - Reauthenticate
           */
          if(isset($input['submit-twitter'])){
-             $output['twitter']['user_name'] = $input['user_name'];
-             $output['twitter']['consumer_key'] = $input['consumer_key'];
-             $output['twitter']['consumer_secret'] = $input['consumer_secret'];
-             $output['twitter']['access_token'] = $input['access_token'];
-             $output['twitter']['access_token_secret'] = $input['access_token_secret'];
-             $output['twitter']['no_of_tweets'] = $input['no_of_tweets'];
-             $output['twitter']['time_to_expire'] = $input['time_to_expire'];
+             $output['twitter']['user_name'] = $input['twitter']['user_name'];
+             $output['twitter']['consumer_key'] = $input['twitter']['consumer_key'];
+             $output['twitter']['consumer_secret'] = $input['twitter']['consumer_secret'];
+             $output['twitter']['access_token'] = $input['twitter']['access_token'];
+             $output['twitter']['access_token_secret'] = $input['twitter']['access_token_secret'];
+             $output['twitter']['no_of_tweets'] = $input['twitter']['no_of_tweets'];
+             $output['twitter']['time_to_expire'] = $input['twitter']['time_to_expire'];
              delete_transient('twitter_user_timeline');
          } elseif (isset($input['reset-twitter'])) {
             $output['twitter'] = $this->defaults['twitter'];

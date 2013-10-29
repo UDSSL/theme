@@ -105,6 +105,7 @@ class UDSSL_Enqueues{
         wp_enqueue_script( 'syntax-script', UDS_URL . 'lib/syntaxhighlighter/scripts/shCore.js', array('uw-jquery'), false, true );
         wp_enqueue_script( 'syntax-script-bash', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushBash.js', array('uw-jquery'), false, true );
         wp_enqueue_script( 'syntax-script-php', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushPhp.js', array('uw-jquery'), false, true );
+        wp_enqueue_script( 'syntax-script-jscript', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushJScript.js', array('uw-jquery'), false, true );
     }
 
     /**

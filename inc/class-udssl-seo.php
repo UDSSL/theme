@@ -16,7 +16,7 @@ class UDSSL_SEO{
      * Add SEO Boxes
      */
     function add_meta_boxes(){
-        $post_types = array('news', 'wp-plugin', 'post', 'projects', 'page');
+        $post_types = array('news', 'udssl-time-tracker', 'post', 'projects', 'page');
 
         foreach($post_types as $post_type){
             add_meta_box(
