@@ -4,7 +4,32 @@
  */
 class UDSSL_Header{
     function top_navigation() {
-        return '<div class="navbar navbar-inverse navbar-fixed-top">
+        if(is_user_logged_in()){
+            $current_user = wp_get_current_user();
+            $member = '
+             <!-- Split button -->
+            <div class="btn-group">
+              <a href="' . get_home_url() . '/profile/" type="button" class="btn btn-default">' . $current_user->user_login . '</a>
+              <a href="' . get_home_url() . '/profile/" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="' . get_home_url() . '/profile/">Edit Profile</a></li>
+                <li><a href="' . get_home_url() . '/membership/">Membeship</a></li>
+                <li><a href="' . get_home_url() . '/cart/">Cart</a></li>
+                <li class="divider"></li>
+                <li><a href="' . get_home_url() . '/logout/">Logout</a></li>
+              </ul>
+            </div>
+                ';
+        } else {
+        $member = '
+            <a href="' . get_home_url() . '/signup/" class="btn btn-success">Sign Up Free</a>
+            <a href="' . get_home_url() . '/login/" class="btn btn-default">Login</a>
+            ';
+        }
+
+        return '<div class="navbar navbar-default navbar-shadow navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".udssl-main">
@@ -16,11 +41,10 @@ class UDSSL_Header{
         </div>
         <div class="navbar-collapse collapse udssl-main">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="' . get_home_url() . '/universal-serial-bus/">USB</a></li>
             <li><a href="' . get_home_url() . '/about/">About</a></li>
             <li><a href="' . get_home_url() . '/contact/">Contact</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+              <a href="' . get_home_url() . '/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
                 <li><a href="' . get_home_url() . '/udssl-time-tracker/">UDSSL Time Tracker</a></li>
@@ -31,15 +55,7 @@ class UDSSL_Header{
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right" action="' . get_home_url() . '/sign-in/" method="POST">
-            <div class="form-group">
-              <input type="text" placeholder="Email" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" name="password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          <ul class="navbar-form navbar-right">' . $member . '</ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -60,10 +76,10 @@ class UDSSL_Header{
           <ul class="nav navbar-nav">
             <li><a href="' . get_home_url() . '/universal-serial-bus/">USB</a></li>
             <li><a href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
-            <li><a href="' . get_home_url() . '/praveen-chathuranga-dias/">Praveen</a></li>
             <li><a href="' . get_home_url() . '/computer-aided-control-systems/">CACS</a></li>
             <li><a href="' . get_home_url() . '/udssl-time-tracker/">Time Tracker</a></li>
             <li><a href="' . get_home_url() . '/telecommunications/">Telecom</a></li>
+            <li><a href="' . get_home_url() . '/store/">Store</a></li>
             <li><a href="' . get_home_url() . '/contact/">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->

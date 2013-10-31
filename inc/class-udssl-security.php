@@ -41,7 +41,7 @@ class UDSSL_Security{
 
         $visitor_sql = "CREATE TABLE IF NOT EXISTS $visitor_table (
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            time DATETIME,
+            time BIGINT,
             token BIGINT DEFAULT 0,
             ip VARCHAR(80),
             port VARCHAR(20),
@@ -100,7 +100,7 @@ class UDSSL_Security{
     function log(){
         $visitor = array(
             'id' => null,
-            'time' => date('Y-m-d H:i:s'),
+            'time' => time(),
             'token' => $this->token,
             'ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'None',
             'port' => isset($_SERVER['REMOTE_PORT']) ? $_SERVER['REMOTE_PORT'] : '',
@@ -158,6 +158,48 @@ class UDSSL_Security{
         } else {
             return true;
         }
+    }
+
+    /**
+     * Get Visits
+     */
+    function get_visits(){
+        global $wpdb;
+        $start = time() - DAY_IN_SECONDS;
+        $visitor_table = $wpdb->prefix . $this->visitor_table;
+        $visits = $wpdb->get_results(
+            "
+            SELECT *
+            FROM $visitor_table
+            WHERE time > $start
+            ORDER BY time
+            DESC
+            LIMIT 200
+            ", ARRAY_A
+        );
+
+        return $visits;
+    }
+
+    /**
+     * Get Visits Report
+     */
+    function get_visits_report($last_index, $limit){
+        global $wpdb;
+        $start = time() - DAY_IN_SECONDS;
+        $visitor_table = $wpdb->prefix . $this->visitor_table;
+        $visits = $wpdb->get_results(
+            "
+            SELECT *
+            FROM $visitor_table
+            WHERE id > $last_index
+            ORDER BY time
+            DESC
+            LIMIT $limit
+            ", ARRAY_A
+        );
+
+        return $visits;
     }
 }
 ?>

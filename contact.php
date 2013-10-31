@@ -10,20 +10,61 @@ global $udssl_theme;
     <div class="row">
         <div class="col-md-12">
             <h1>Contact UDSSL</h1>
-            <form role="form" action="<?php echo get_home_url(); ?>/contact/" method="POST">
-              <div class="form-group">
-                <label for="contacting-name">Name</label>
-                <input type="text" class="form-control" id="contacting-name" name="name" placeholder="Enter name">
-              </div>
-              <div class="form-group">
-                <label for="contacting-email">Email address</label>
-                <input type="email" class="form-control" id="contacting-email" name="email" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="contacting-message">Message</label>
-                <textarea class="form-control" id="contacting-message" name="message" placeholder="Enter your message"></textarea>
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
+            <form id="udssl-contact-form" role="form" action="#">
+            <fieldset>
+              <legend>USB Digital Services <small class="text-muted"> | praveen.udssl@gmail.com</small></legend>
+                <div id="udssl-contact-response" class="form-actions row">
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-3">
+                    <label class="control-label" for="name">Your Name</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" name="name" id="name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-3">
+                    <label class="control-label" for="email">Email Address</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" name="email" id="email">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-3">
+                    <label class="control-label" for="subject">Subject</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" name="subject" id="subject">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-3">
+                    <label class="control-label" for="message">Your Message</label>
+                  </div>
+                  <div class="col-lg-6">
+                    <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="form-actions row">
+                  <div class="col-lg-3">
+                  </div>
+                  <div class="col-lg-6">
+                    <?php echo $udssl_theme->contact->get_recaptcha(); ?>
+                  </div>
+                </div>
+                <hr />
+                <div class="form-actions row">
+                  <div class="col-lg-3">
+                  </div>
+                  <div class="col-lg-6">
+                      <button id="udssl-contact-button" type="submit" class="btn btn-primary btn-large">Submit</button>
+                      <button type="reset" class="btn">Cancel</button>
+                      <?php wp_nonce_field('udssl_contact_form'); ?>
+                  </div>
+                </div>
+              </fieldset>
             </form>
         </div>
     </div>
@@ -39,6 +80,7 @@ global $udssl_theme;
             ?>
         </div>
     </div>
+    <hr />
     </div>
     <div class="col-md-4">
         <?php $udssl_theme->sidebar->single_right(); ?>

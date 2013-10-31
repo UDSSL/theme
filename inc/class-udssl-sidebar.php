@@ -73,9 +73,11 @@ class UDSSL_Sidebar{
                  * WLCS Sidebar
                  */
                 echo $this->get_wlcs_sidebar();
+                echo $this->get_search_form();
                 return true;
             }
         }
+
         /**
          * Search Form
          */
@@ -98,7 +100,7 @@ class UDSSL_Sidebar{
             'posts_per_page' => 10
         );
         $the_query = new WP_Query( $args );
-        $recent = '<h3>Recent Posts</h3><ul class="list-group">';
+        $recent = '<ul class="list-group">';
 
         if($the_query->have_posts()){
             while($the_query->have_posts()){
@@ -126,13 +128,26 @@ class UDSSL_Sidebar{
      * Search Form
      */
     function get_search_form(){
-        $search = '<h3>Search UDSSL</h3>
-        <form class="form-inline" role="form" id="searchForm" action="' . home_url() . '/search/" method="POST">
+        $search = '<h4 class="text-right text-muted" >Search UDSSL</h4>
+        <form class="form-inline text-right" role="form" id="searchForm" action="' . home_url() . '/search/" method="GET">
           <div class="form-group">
-            <input type="text" class="form-control" name="search-text" id="search-text" placeholder="USB Solutions">
+            <input type="text" class="form-control" name="q" id="search-text" placeholder="USB Solutions">
           </div>
           <button type="submit" class="btn btn-default">Search</button>
         </form>';
+        $ssearch = "<script>
+                  (function() {
+                    var cx = '002712191060810368479:bfayxxelg-q';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>";
         return $search;
     }
 

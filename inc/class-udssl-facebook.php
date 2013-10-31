@@ -74,7 +74,7 @@ class UDSSL_Facebook_Widget extends WP_Widget {
         $height = esc_html($udssl_options['facebook']['facebook_widget_height']);
 
         echo '<div id="sp-fb-like-box" class="footerBox oneFourth"><div id="facebookInner">';
-        echo '<h3 style="margin-bottom:10px">' . $title . '</h3>';
+        echo '<h3 style="margin-bottom:10px" class="text-muted">' . $title . '</h3>';
         echo '<div class="fb-container">';
         echo '<div class="fb-like-box" data-border-color="#000" data-href="https://www.facebook.com/' . $page_url
             . '" data-width="' . $width . '" data-height="' . $height . '" data-show-faces="true" data-stream="false" data-header="false"></div>';

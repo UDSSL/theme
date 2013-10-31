@@ -38,11 +38,6 @@ class UDSSL_Search{
         $query_var = $wp_query->query_vars['udssl_search'];
 
         /**
-         * Die
-         */
-        wp_die('UDSSL: Not Implemented');
-
-        /**
          * UDSSL Search
          */
         if($query_var == 'yes'):
@@ -56,6 +51,7 @@ class UDSSL_Search{
      * UDSSL Search
      */
     function search_page(){
+        include_once UDS_PATH . 'search.php';
     }
 }
 ?>

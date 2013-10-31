@@ -38,7 +38,7 @@ global $udssl_theme;
             </div>
             <div class="row">
                 <div class="col-md-12 site-title">
-                    <h3>USB Digital Services</h3>
+                    <h3 class="text-muted">USB Digital Services</h3>
                 </div>
             </div>
         </div>

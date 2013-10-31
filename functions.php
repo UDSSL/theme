@@ -39,6 +39,11 @@ class UDSSL_Theme{
     private $admin;
 
     /**
+     * Analytics
+     */
+    private $analytics;
+
+    /**
      * Enqueues
      */
     private $enqueues;
@@ -109,6 +114,21 @@ class UDSSL_Theme{
     public $search;
 
     /**
+     * Session
+     */
+    public $session;
+
+    /**
+     * Utilities
+     */
+    public $utils;
+
+    /**
+     * Cron
+     */
+    public $cron;
+
+    /**
      * Constructor
      */
     function __construct(){
@@ -173,6 +193,18 @@ class UDSSL_Theme{
 
         require UDS_PATH . 'inc/class-udssl-search.php';
         $this->search = new UDSSL_Search();
+
+        require UDS_PATH . 'inc/class-udssl-session.php';
+        $this->session = new UDSSL_Session();
+
+        require UDS_PATH . 'inc/class-udssl-utilities.php';
+        $this->utils = new UDSSL_Utilities();
+
+        require UDS_PATH . 'cron/class-udssl-cron.php';
+        $this->cron = new UDSSL_Cron();
+
+        require UDS_PATH . 'admin/class-udssl-analytics.php';
+        $this->analytics = new UDSSL_Analytics();
     }
 
     /**
@@ -187,6 +219,23 @@ class UDSSL_Theme{
      */
     function after_setup_theme(){
         add_theme_support('post-thumbnails');
+    }
+
+    /**
+     * UDSSL Theme Installation Routine
+     */
+    function install(){
+        $this->security->create_visitor_table();
+        $this->cron->activation();
+        flush_rewrite_rules();
+    }
+
+    /**
+     * UDSSL Theme Uninstallation Routine
+     */
+    function uninstall(){
+        $this->cron->dectivation();
+        flush_rewrite_rules();
     }
 }
 

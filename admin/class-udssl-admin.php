@@ -136,6 +136,20 @@ class UDSSL_Admin{
                 'id' => '28fa4sd54',
                 'url' => 'https://api.mailchimp.com/2.0/lists/subscribe.json',
                 'default_name' => 'UDSSLWebSite'
+            ),
+            'recaptcha' => array(
+                'private_key' => 'aaabbbccc123456',
+                'public_key' => 'bbbccc123456',
+                'enabled' => true
+            ),
+            'users' => array(
+                'login_expiration_time' => 60,
+                'take_over' => false
+            ),
+            'cron' => array(
+                'report' => array(
+                    'interval' => 60
+                )
             )
         );
     }
@@ -144,7 +158,6 @@ class UDSSL_Admin{
      * UDSSL Options Initialization
      */
     function udssl_options_init(){
-        //delete_option('udssl_options');
         $udssl_options = get_option('udssl_options');
         if( false == $udssl_options )
             update_option('udssl_options', $this->defaults);
@@ -159,7 +172,10 @@ class UDSSL_Admin{
             'facebook'   => __('Facebook', 'udssl'),
             'twitter'    => __('Twitter', 'udssl'),
             'contact'    => __('Contact', 'udssl'),
-            'newsletter' => __('Newsletter', 'udssl')
+            'newsletter' => __('Newsletter', 'udssl'),
+            'recaptcha'  => __('reCaptcha', 'udssl'),
+            'users'      => __('Users', 'udssl'),
+            'cron'       => __('Cron', 'udssl')
         );
     }
 
@@ -194,6 +210,15 @@ class UDSSL_Admin{
                     break;
                 case 'newsletter' :
                     require UDS_PATH . 'admin/tabs/tab-newsletter.php';
+                    break;
+                case 'recaptcha' :
+                    require UDS_PATH . 'admin/tabs/tab-recaptcha.php';
+                    break;
+                case 'users' :
+                    require UDS_PATH . 'admin/tabs/tab-users.php';
+                    break;
+                case 'cron' :
+                    require UDS_PATH . 'admin/tabs/tab-cron.php';
                     break;
                 endswitch;
 
@@ -287,8 +312,14 @@ class UDSSL_Admin{
              $output['facebook']['facebook_widget_title'] = $input['facebook_widget_title'];
              $output['facebook']['facebook_widget_width'] = $input['facebook_widget_width'];
              $output['facebook']['facebook_widget_height'] = $input['facebook_widget_height'];
+
+            $message = 'UDSSL Facebook Settings Saved';
+            $type = 'updated';
          } elseif (isset($input['reset-facebook'])) {
              $output['facebook'] = $this->defaults['facebook'];
+
+            $message = 'UDSSL Facebook Settings Reset';
+            $type = 'updated';
          }
 
          /**
@@ -303,11 +334,20 @@ class UDSSL_Admin{
              $output['twitter']['no_of_tweets'] = $input['twitter']['no_of_tweets'];
              $output['twitter']['time_to_expire'] = $input['twitter']['time_to_expire'];
              delete_transient('twitter_user_timeline');
+
+            $message = 'UDSSL Twitter Settings Saved';
+            $type = 'updated';
          } elseif (isset($input['reset-twitter'])) {
             $output['twitter'] = $this->defaults['twitter'];
              delete_transient('twitter_user_timeline');
+
+            $message = 'UDSSL Twitter Settings Reset';
+            $type = 'updated';
          } elseif (isset($input['delete-twitter'])) {
              delete_transient('twitter_user_timeline');
+
+            $message = 'UDSSL Twitter Timeline Deleted';
+            $type = 'updated';
          } elseif (isset($input['reauthenticate-twitter'])) {
              echo 'redirecting';
              exit;
@@ -366,6 +406,77 @@ class UDSSL_Admin{
             $type = 'updated';
   		}
 
+        /**
+        * reCaptcha Save Settings - Reset
+        */
+        if(isset($input['submit-recaptcha'])){
+            $output['recaptcha']['private_key'] = sanitize_text_field($input['recaptcha']['private_key']);
+            $output['recaptcha']['public_key'] = sanitize_text_field($input['recaptcha']['public_key']);
+            $output['recaptcha']['enabled'] = isset($input['recaptcha']['enabled']) ? true : false;
+
+            $message = 'UDSSL reCaptcha Settings Saved';
+            $type = 'updated';
+        } elseif (isset($input['reset-recaptcha'])) {
+            $output['recaptcha'] = $this->defaults['recaptcha'];
+
+            $message = 'UDSSL reCaptcha Settings Reset';
+            $type = 'updated';
+        }
+
+         /**
+          * Users Save Settings - Reset
+          */
+         if(isset($input['submit-users'])){
+             $output['users']['login_expiration_time'] = $input['users']['login_expiration_time'];
+             $output['users']['take_over'] = isset($input['users']['take_over']) ? true : false;
+         } elseif (isset($input['reset-users'])) {
+             $output['users'] = $this->defaults['users'];
+         }
+
+         /**
+          * Logout Users
+          */
+        $logged_in = get_option('udssl_logged_in_users');
+        if(false == $logged_in){
+            $logged_in = array();
+        }
+        foreach($logged_in as $user_id => $user){
+             if(isset($input['logout_' . $user_id])){
+                if(isset($logged_in[$user_id])){
+                    unset($logged_in[$user_id]);
+                }
+                update_option('udssl_logged_in_users', $logged_in);
+             }
+        }
+
+        /**
+         * UDSSL Cron Reschedule
+         */
+        if($output['cron']['report']['interval'] !=
+            $input['report']['interval'] ):
+
+            global $udssl_theme;
+            $udssl_theme->cron->schedule_event(
+                'udssl_report',
+                $input['report']['interval']);
+            $message = 'UDSSL Cron Rescheduled';
+            $type = 'updated';
+        endif;
+
+        /**
+        * Cron Save Settings - Reset
+        */
+        if(isset($input['submit-cron'])){
+            $output['cron']['report']['interval'] = $input['report']['interval'];
+
+            $message = 'UDSSL Cron Configuration Saved';
+            $type = 'updated';
+        } elseif (isset($input['reset-cron'])) {
+            $output['cron'] = $this->defaults['cron'];
+
+            $message = 'UDSSL Cron Configuration Reset';
+            $type = 'updated';
+        }
 
         add_settings_error(
             'udssl',

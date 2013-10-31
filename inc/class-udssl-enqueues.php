@@ -96,16 +96,21 @@ class UDSSL_Enqueues{
         /**
          * Libs
          */
-        wp_enqueue_script( 'uw-jquery', UDS_URL . 'lib/bootstrap/assets/jquery.js', array(), false, true );
-        wp_enqueue_script( 'bootstrap', UDS_URL . 'lib/bootstrap/js/bootstrap.min.js', array('uw-jquery'), false, true );
+        wp_enqueue_script( 'udssl-jquery', UDS_URL . 'lib/bootstrap/assets/jquery.js', array(), false, true );
+        wp_enqueue_script( 'bootstrap', UDS_URL . 'lib/bootstrap/js/bootstrap.min.js', array('udssl-jquery'), false, true );
+
+        /**
+         * UDSSL Script
+         */
+        wp_enqueue_script( 'udssl-js', UDS_URL . 'js/udssl.js', array('udssl-jquery'), false, true );
 
         /**
          * Syntax
          */
-        wp_enqueue_script( 'syntax-script', UDS_URL . 'lib/syntaxhighlighter/scripts/shCore.js', array('uw-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-bash', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushBash.js', array('uw-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-php', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushPhp.js', array('uw-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-jscript', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushJScript.js', array('uw-jquery'), false, true );
+        wp_enqueue_script( 'syntax-script', UDS_URL . 'lib/syntaxhighlighter/scripts/shCore.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script( 'syntax-script-bash', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushBash.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script( 'syntax-script-php', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushPhp.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script( 'syntax-script-jscript', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushJScript.js', array('udssl-jquery'), false, true );
     }
 
     /**

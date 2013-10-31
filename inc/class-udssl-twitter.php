@@ -51,13 +51,13 @@ class UDSSL_Twitter{
      * Get The Html
      */
     function get_widget_html(){
-        $output = '<h3>Latest Tweets</h3>';
+        $output = '<h3 class="text-muted" >Latest Tweets</h3>';
         $tweets = $this->get_tweets();
         $output .= '<ul id="udssl-tweets">';
 
         foreach($tweets as $tweet){
             $output .= '<li class="udssl-single-tweet">';
-            $tweet = $tweet['text'];
+            $tweet = '<span class="glyphicon glyphicon-share-alt"></span> ' . $tweet['text'];
             $reg_tcos = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
             if(preg_match($reg_tcos, $tweet, $url)){
                 $replacement = '<a href="' . $url[0] . '">' . $url[0] . '</a> ';
