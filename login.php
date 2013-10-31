@@ -31,6 +31,7 @@ global $udssl_theme;
           <button type="submit" class="btn btn-default btn-lg">Login</button>
           <?php wp_nonce_field('udssl_login_form'); ?>
         </form>
+        <hr />
         </div>
     </div>
     <div class="col-md-4">

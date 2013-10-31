@@ -121,11 +121,11 @@ class UDSSL_Contact{
                 'text' => 'Email address',
                 'val' => $email
             ),
-            1 => array(
+            2 => array(
                 'text' => 'Subject',
                 'val' => $subject
             ),
-            2 => array(
+            3 => array(
                 'text' => 'Message',
                 'val' => $message
             )

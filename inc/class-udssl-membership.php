@@ -164,6 +164,15 @@ class UDSSL_Membership{
             }
 
             /**
+             * Admin Email
+             */
+            if($email == 'praveen.udssl@gmail.com'){
+                $_SESSION['login_error'] = '<strong>Error:</strong> Use Contact Form to Email Praveen.';
+                require_once UDS_PATH . 'login.php';
+                exit;
+            }
+
+            /**
              * Login User
              */
             $username = $user->user_login;

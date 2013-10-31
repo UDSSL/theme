@@ -142,6 +142,11 @@ a.read-more{
 	-moz-transition: 1s;
 	transition: 1s;
 }
+
+#back-top{
+	display: none;
+}
+
 #back-top a:hover span {
 	background-color: #777;
 }
