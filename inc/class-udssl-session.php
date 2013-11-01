@@ -127,7 +127,7 @@ class UDSSL_Session{
          * Check Session ID
          */
         $udssl_session = $logged_in[$user_id]['udssl_session'];
-        $visitor_session = $_SESSION['udssl_session'];
+        $visitor_session = isset($_SESSION['udssl_session']) ? $_SESSION['udssl_session'] : '';
         if($udssl_session != $visitor_session){
             $_SESSION['logout_method'] = 'noremove';
             wp_logout();

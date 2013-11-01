@@ -14,6 +14,8 @@ body {
 #footer-bottom{
     padding: 15px 0 3px 0;
     margin: 0;
+    -moz-box-shadow: -1px -1px 15px 3px #ccc;
+    -webkit-box-shadow: -1px -1px 15px 3px #ccc;
     box-shadow: -1px -1px 15px 3px #ccc;
 }
 

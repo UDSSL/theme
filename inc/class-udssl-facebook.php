@@ -14,26 +14,53 @@ class UDSSL_Facebook{
         ?>
         <div id="fb-root"></div>
         <script>
-          window.fbAsyncInit = function() {
-            // init the FB JS SDK
-            FB.init({
-              appId      : '<?php echo $app_id ?>',                        // App ID from the app dashboard
-              channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
-              status     : true,                                 // Check Facebook Login status
-              xfbml      : true                                  // Look for social plugins on the page
-            });
+            window.fbAsyncInit = function() {
+                /**
+                 * Facebook Init
+                 */
+                FB.init({
+                    appId      : '<?php echo $app_id ?>',
+                    channelUrl : '<?php echo get_home_url(); ?>/channel.html',
+                    status     : true, // check login status
+                    cookie     : true, // enable cookies to allow the server to access the session
+                    xfbml      : true  // parse XFBML
+                });
 
-            // Additional initialization code such as adding Event Listeners goes here
-          };
+                /**
+                 * Subscribe to authResponseChange
+                 */
+                FB.Event.subscribe('auth.authResponseChange', function(response) {
+                    if (response.status === 'connected') {
+                      udsslAPI();
+                    } else if (response.status === 'not_authorized') {
+                      FB.login();
+                    } else {
+                      FB.login();
+                    }
+                });
+            }
 
-          // Load the SDK asynchronously
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/all.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
+            /**
+             * UDSSL Test
+             *
+             * Use below for testing
+             * <fb:login-button show-faces="false" width="50" max-rows="1"></fb:login-button>
+             */
+            function udsslAPI() {
+                console.log('Welcome!  Fetching your information');
+                FB.api('/me', function(response) {
+                  console.log('Good to see you, ' + response.name + '.');
+                });
+            };
+
+            // Load the SDK asynchronously
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         </script>
     <?php
     }
