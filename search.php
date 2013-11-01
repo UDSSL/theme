@@ -7,7 +7,8 @@ global $udssl_theme;
 ?>
 <div class="row">
     <div class="col-md-8">
-        <h1>Search UDSSL</h1>
+        <h1>Search Results</h1>
+        <p class="text-muted"><i>UDSSL Search Results powered by Google Custom Search</i></p>
         <div>
         <script>
           (function() {

@@ -129,6 +129,16 @@ class UDSSL_Theme{
     public $cron;
 
     /**
+     * Downloads
+     */
+    public $downloads;
+
+    /**
+     * Router
+     */
+    public $router;
+
+    /**
      * Constructor
      */
     function __construct(){
@@ -205,6 +215,12 @@ class UDSSL_Theme{
 
         require UDS_PATH . 'admin/class-udssl-analytics.php';
         $this->analytics = new UDSSL_Analytics();
+
+        require UDS_PATH . 'inc/class-udssl-downloads.php';
+        $this->downloads = new UDSSL_Downloads();
+
+        require UDS_PATH . 'inc/class-udssl-router.php';
+        $this->router = new UDSSL_Router();
     }
 
     /**
@@ -227,6 +243,13 @@ class UDSSL_Theme{
     function install(){
         $this->security->create_visitor_table();
         $this->cron->activation();
+
+        /**
+         * Call All Rewrites
+         */
+        $this->downloads->download_rewrite();
+        $this->router->router_rewrite();
+
         flush_rewrite_rules();
     }
 
