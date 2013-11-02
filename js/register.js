@@ -1,9 +1,9 @@
 /**
  * UDSSL Registration Processor
  */
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
-$('#udssl-registration-form').validate(
+jQuery('#udssl-registration-form').validate(
  {
   rules: {
     firstname: {
@@ -31,7 +31,7 @@ $('#udssl-registration-form').validate(
     }
   },
   highlight: function(element) {
-    $(element).closest('.form-group').removeClass('success').addClass('has-error');
+    jQuery(element).closest('.form-group').removeClass('success').addClass('has-error');
   },
   success: function(element) {
     element
@@ -40,24 +40,24 @@ $('#udssl-registration-form').validate(
   }
  });
 
-$('#udssl-registration-form').submit(function( event ) {
-    $('#udssl-register-button').html('Registering...');
+jQuery('#udssl-registration-form').submit(function( event ) {
+    jQuery('#udssl-register-button').html('Registering...');
     event.preventDefault();
-    $.ajax({
+    jQuery.ajax({
       type: 'POST',
       url: udssl.registration_url,
       data: {
-        firstname: $('#firstname').val(),
-        lastname: $('#lastname').val(),
-        username: $('#username').val(),
-        password: $('#password').val(),
-        passwordconfirm: $('#passwordconfirm').val(),
-        email: $('#email').val(),
-        subscribe: $('#newsletter').is(':checked'),
-        _wpnonce: $('[name="_wpnonce"]').val(),
-        _wp_http_referer: $('[name="_wp_http_referer"]').val(),
-        recaptcha_challenge_field: $('#recaptcha_challenge_field').val(),
-        recaptcha_response_field: $('#recaptcha_response_field').val()
+        firstname: jQuery('#firstname').val(),
+        lastname: jQuery('#lastname').val(),
+        username: jQuery('#username').val(),
+        password: jQuery('#password').val(),
+        passwordconfirm: jQuery('#passwordconfirm').val(),
+        email: jQuery('#email').val(),
+        subscribe: jQuery('#newsletter').is(':checked'),
+        _wpnonce: jQuery('[name="_wpnonce"]').val(),
+        _wp_http_referer: jQuery('[name="_wp_http_referer"]').val(),
+        recaptcha_challenge_field: jQuery('#recaptcha_challenge_field').val(),
+        recaptcha_response_field: jQuery('#recaptcha_response_field').val()
       }
     })
       .done(function(msg) {
@@ -71,15 +71,15 @@ $('#udssl-registration-form').submit(function( event ) {
               response += '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
               response += '<strong>Error!</strong> ' + msg.message + '</div>';
           }
-          $('#udssl-registration-response').html(response);
+          jQuery('#udssl-registration-response').html(response);
 
       })
       .always(function() {
-        $('#udssl-register-button').html('Register');
-        $('body,html').animate({
+        jQuery('#udssl-register-button').html('Register');
+        jQuery('body,html').animate({
             scrollTop: 0
         }, 800);
-        //Recaptcha.reload();
+        Recaptcha.reload();
   });
 });
 

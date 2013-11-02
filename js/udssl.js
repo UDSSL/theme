@@ -1,20 +1,20 @@
-$(document).ready(function(){
+jQuery(document).ready(function(){
 	// hide #back-top first
-	$("#back-top").hide();
+	jQuery("#back-top").hide();
 
 	// fade in #back-top
-	$(function () {
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > 100) {
-				$('#back-top').fadeIn();
+	jQuery(function () {
+		jQuery(window).scroll(function () {
+			if (jQuery(this).scrollTop() > 100) {
+				jQuery('#back-top').fadeIn();
 			} else {
-				$('#back-top').fadeOut();
+				jQuery('#back-top').fadeOut();
 			}
 		});
 
 		// scroll body to 0px on click
-		$('#back-top a').click(function () {
-			$('body,html').animate({
+		jQuery('#back-top a').click(function () {
+			jQuery('body,html').animate({
 				scrollTop: 0
 			}, 800);
 			return false;

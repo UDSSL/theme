@@ -156,8 +156,8 @@ class UDSSL_Contact{
      * Enqueues
      */
     function enqueues(){
-        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'contact-us', UDS_URL . 'js/contact.js', array('udssl-jquery', 'jquery-validate'), false, true );
+        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('jquery'), false, true );
+        wp_enqueue_script( 'contact-us', UDS_URL . 'js/contact.js', array('jquery', 'jquery-validate'), false, true );
         $udssl_js = array(
           'contact_url' => get_home_url() . '/contact/'
         );
@@ -175,7 +175,7 @@ class UDSSL_Contact{
             <script src="' . UDS_URL . 'vendor/jquery.mapmarker.js"></script>
 
             <script>
-                $(document).ready(function() {
+                jQuery(document).ready(function() {
 
                     var mapMarkers = {
                         "markers": [
@@ -187,7 +187,7 @@ class UDSSL_Contact{
                         ]
                     };
 
-                    $("#googlemaps").mapmarker({
+                    jQuery("#googlemaps").mapmarker({
                         zoom : ' . $options['zoom'] . ',
                         center: "' . $options['center_x'] . ', ' . $options['center_y'] . '",
                         dragging:1,

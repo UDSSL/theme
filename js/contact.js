@@ -1,9 +1,9 @@
 /**
  * UDSSL Contact Processor
  */
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
-$('#udssl-contact-form').validate(
+jQuery('#udssl-contact-form').validate(
  {
   rules: {
     name: {
@@ -42,7 +42,7 @@ $('#udssl-contact-form').validate(
     }
   },
   highlight: function(element) {
-    $(element).closest('.form-group').removeClass('success').addClass('has-error');
+    jQuery(element).closest('.form-group').removeClass('success').addClass('has-error');
   },
   success: function(element) {
     element
@@ -51,21 +51,21 @@ $('#udssl-contact-form').validate(
   }
  });
 
-$('#udssl-contact-form').submit(function( event ) {
-    $('#udssl-contact-button').html('Contacting...');
+jQuery('#udssl-contact-form').submit(function( event ) {
+    jQuery('#udssl-contact-button').html('Contacting...');
     event.preventDefault();
-    $.ajax({
+    jQuery.ajax({
       type: 'POST',
       url: udssl.contact_url,
       data: {
-        name: $('#name').val(),
-        email: $('#email').val(),
-        subject: $('#subject').val(),
-        message: $('#message').val(),
-        wpnonce: $('[name="_wpnonce"]').val(),
-        wp_http_referer: $('[name="_wp_http_referer"]').val(),
-        recaptcha_challenge_field: $('#recaptcha_challenge_field').val(),
-        recaptcha_response_field: $('#recaptcha_response_field').val()
+        name: jQuery('#name').val(),
+        email: jQuery('#email').val(),
+        subject: jQuery('#subject').val(),
+        message: jQuery('#message').val(),
+        wpnonce: jQuery('[name="_wpnonce"]').val(),
+        wp_http_referer: jQuery('[name="_wp_http_referer"]').val(),
+        recaptcha_challenge_field: jQuery('#recaptcha_challenge_field').val(),
+        recaptcha_response_field: jQuery('#recaptcha_response_field').val()
       }
     })
       .done(function(msg) {
@@ -78,12 +78,12 @@ $('#udssl-contact-form').submit(function( event ) {
               response += '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
               response += '<strong>Error!</strong> ' + msg.message + '</div>';
           }
-          $('#udssl-contact-response').html(response);
+          jQuery('#udssl-contact-response').html(response);
 
       })
       .always(function() {
-        $('#udssl-contact-button').html('Submit');
-        $('body,html').animate({
+        jQuery('#udssl-contact-button').html('Submit');
+        jQuery('body,html').animate({
             scrollTop: 0
         }, 800);
         Recaptcha.reload();

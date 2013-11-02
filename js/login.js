@@ -1,9 +1,9 @@
 /**
  * UDSSL Login Form Processor
  */
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
-$('#udssl-login-form').validate(
+jQuery('#udssl-login-form').validate(
  {
   rules: {
     email: {
@@ -26,7 +26,7 @@ $('#udssl-login-form').validate(
     }
   },
   highlight: function(element) {
-    $(element).closest('.form-group').removeClass('success').addClass('has-error');
+    jQuery(element).closest('.form-group').removeClass('success').addClass('has-error');
   },
   success: function(element) {
     element

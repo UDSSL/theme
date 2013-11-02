@@ -200,8 +200,8 @@ class UDSSL_Membership{
      * Login Enqueue
      */
     function login_enqueue(){
-        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'udssl-login', UDS_URL . 'js/login.js', array('udssl-jquery', 'jquery-validate'), false, true );
+        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('jquery'), false, true );
+        wp_enqueue_script( 'udssl-login', UDS_URL . 'js/login.js', array('jquery', 'jquery-validate'), false, true );
         wp_enqueue_style( 'validate-style', UDS_URL . 'css/validate.css' );
     }
 
@@ -209,8 +209,8 @@ class UDSSL_Membership{
      * Registration Enqueue
      */
     function registration_enqueue(){
-        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'udssl-registration', UDS_URL . 'js/register.js', array('udssl-jquery', 'jquery-validate'), false, true );
+        wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('jquery'), false, true );
+        wp_enqueue_script( 'udssl-registration', UDS_URL . 'js/register.js', array('jquery', 'jquery-validate'), false, true );
         $udssl_js = array(
           'registration_url' => get_home_url() . '/signup/'
         );
