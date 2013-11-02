@@ -23,6 +23,11 @@ class UDSSL_Enqueues{
         add_action( 'wp_enqueue_scripts', array($this, 'scripts') );
 
         /**
+         * Libraries
+         */
+        add_action( 'wp_enqueue_scripts', array($this, 'libs') );
+
+        /**
          * WP Head Print
          */
         add_action( 'wp_head', array($this, 'wp_head_print') );
@@ -70,23 +75,23 @@ class UDSSL_Enqueues{
         /**
          * Bootstrap
          */
-        wp_enqueue_style( 'bootstrap', UDS_URL . 'lib/bootstrap/css/bootstrap.css' );
+        wp_enqueue_style('bootstrap', UDS_URL . 'lib/bootstrap/css/bootstrap.css');
 
         /**
          * Font Awesome
          */
-        wp_enqueue_style( 'font-awesome', UDS_URL . 'lib/font-awesome/css/font-awesome.css' );
+        wp_enqueue_style('font-awesome', UDS_URL . 'lib/font-awesome/css/font-awesome.css');
 
         /**
          * Theme
          */
-        wp_enqueue_style( 'udssl', UDS_URL . 'css/style.css' );
+        wp_enqueue_style('udssl', UDS_URL . 'css/style.css');
 
         /**
          * Syntax
          */
-        wp_enqueue_style( 'syntax-style', UDS_URL . 'lib/syntaxhighlighter/styles/shCore.css' );
-        wp_enqueue_style( 'syntax-style-theme', UDS_URL . 'lib/syntaxhighlighter/styles/shThemeDefault.css' );
+        wp_enqueue_style('syntax-style', UDS_URL . 'lib/syntaxhighlighter/styles/shCore.css');
+        wp_enqueue_style('syntax-style-theme', UDS_URL . 'lib/syntaxhighlighter/styles/shThemeDefault.css');
     }
 
     /**
@@ -96,21 +101,33 @@ class UDSSL_Enqueues{
         /**
          * Libs
          */
-        wp_enqueue_script( 'udssl-jquery', UDS_URL . 'lib/bootstrap/assets/jquery.js', array(), false, true );
-        wp_enqueue_script( 'bootstrap', UDS_URL . 'lib/bootstrap/js/bootstrap.min.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('bootstrap', UDS_URL . 'lib/bootstrap/js/bootstrap.min.js', array('jquery'), false, true );
 
         /**
          * UDSSL Script
          */
-        wp_enqueue_script( 'udssl-js', UDS_URL . 'js/udssl.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script('udssl-js', UDS_URL . 'js/udssl.js', array('jquery'), false, true );
 
         /**
          * Syntax
          */
-        wp_enqueue_script( 'syntax-script', UDS_URL . 'lib/syntaxhighlighter/scripts/shCore.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-bash', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushBash.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-php', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushPhp.js', array('udssl-jquery'), false, true );
-        wp_enqueue_script( 'syntax-script-jscript', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushJScript.js', array('udssl-jquery'), false, true );
+        wp_enqueue_script('syntax-script', UDS_URL . 'lib/syntaxhighlighter/scripts/shCore.js', array('jquery'), false, true );
+        wp_enqueue_script('syntax-script-bash', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushBash.js', array('jquery'), false, true );
+        wp_enqueue_script('syntax-script-php', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushPhp.js', array('jquery'), false, true );
+        wp_enqueue_script('syntax-script-jscript', UDS_URL . 'lib/syntaxhighlighter/scripts/shBrushJScript.js', array('jquery'), false, true );
+    }
+
+    /**
+     * Enqueues Libraries
+     */
+    function libs(){
+        /**
+         * Basic jQuery Slider
+         */
+        wp_enqueue_script('bjqs', UDS_URL . 'lib/bjqs/js/bjqs-1.3.min.js', array('jquery'), false, true );
+        wp_enqueue_style('bjqs-style', UDS_URL . 'lib/bjqs/bjqs.css');
+
     }
 
     /**
