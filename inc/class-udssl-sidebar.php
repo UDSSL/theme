@@ -82,8 +82,12 @@ class UDSSL_Sidebar{
          * Search Form
          */
         echo $this->get_search_form();
-
         echo '<hr />';
+
+        /**
+         * UDSSL Slider
+         */
+        echo $this->get_slider();
 
         /**
          * Recent Posts
@@ -257,6 +261,41 @@ class UDSSL_Sidebar{
         }
         $wlcs_pages .= '</ul>';
         return $wlcs_pages;
+    }
+
+    /**
+     * UDSSL Slider
+     */
+    function get_slider(){
+        $slider = '
+            <!-- http://www.basic-slider.com/ -->
+            <div class="row" ><div class="col-md-12">
+            <div id="udssl-slideshow">
+                <img id="featured-slider" src="' . get_home_url() . '/assets/slider/featured.png" />
+                <ul class="bjqs">
+                    <li><a href="' . get_home_url() . '/udssl-time-tracker/" ><img title="UDSSL Time Tracker" src="'
+                    . get_home_url() . '/assets/slider/udssl-time-tracker-english.png" /></a></li>
+                    <li><a href="' . get_home_url() . '/udssl-time-tracker/" ><img title="Track Your Time Easily" src="'
+                    . get_home_url() . '/assets/slider/udssl-time-tracker-sinhala.png" /></a></li>
+                    <li><a href="' . get_home_url() . '/projects/water-level-control-system/" ><img title="Computer Aided Water Level Control System" src="'
+                    . get_home_url() . '/assets/slider/water-level-control.png" /></a></li>
+                    </ul>
+            </div>
+            <hr />
+            </div>
+            </div>
+            <script>
+                jQuery(document).ready(function($) {
+                    $("#udssl-slideshow").bjqs({
+                        "height" : 360,
+                        "width" : 360,
+                        "showcontrols" : false,
+                        "responsive" : true
+                    });
+                });
+            </script>
+            ';
+        return $slider;
     }
 }
 ?>
