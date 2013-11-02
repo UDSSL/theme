@@ -11,6 +11,12 @@ class UDSSL_Editor{
          * Remove WYSWYG Editor
          */
         add_action('init', array($this, 'remove_wysiwyg'));
+
+        /**
+         * Remove Auto P
+         */
+        remove_filter('the_content', 'wpautop');
+
     }
 
     /**
