@@ -156,13 +156,13 @@ class UDSSL_Sidebar{
         $options = get_option('udssl_options');
         return '<div class="social-icons">
             <ul class="social-icons">
-                <li class="github"><a href="' . $options["basic"]["github"]["url"] . '" target="_blank" title="GitHub"><i class="icon-github icon-2x"></i></a></li>
-                <li class="youtube"><a href="' . $options["basic"]["youtube"]["url"] . '" target="_blank" title="YouTube"><i class="icon-youtube icon-2x"></i></a></li>
-                <li class="stackexchange"><a href="' . $options["basic"]["stackexchange"]["url"] . '" target="_blank" title="Stackexchange"><i class="icon-stackexchange icon-2x"></i></a></li>
-                <li class="linkedin"><a href="' . $options["basic"]["linkedin"]["url"] . '" target="_blank" title="LinkedIn"><i class="icon-linkedin icon-2x"></i></a></li>
-                <li class="googleplus"><a href="' . $options["basic"]["google"]["url"] . '" target="_blank" title="Google Plus"><i class="icon-google-plus icon-2x"></i></a></li>
-                <li class="twitter"><a href="https://www.twitter.com/' . $options["basic"]["twitter"]["user_name"] . '" target="_blank" title="Twitter"><i class="icon-twitter icon-2x"></i></a></li>
-                <li class="facebook"><a href="' . $options["basic"]["facebook"]["url"] . '" target="_blank" title="Facebook"><i class="icon-facebook icon-2x"></i></a></li>
+                <li class="github"><a href="' . $options["basic"]["github"]["url"] . '" target="_blank" title="GitHub"><i class="fa fa-github fa-2x"></i></a></li>
+                <li class="youtube"><a href="' . $options["basic"]["youtube"]["url"] . '" target="_blank" title="YouTube"><i class="fa fa-youtube fa-2x"></i></a></li>
+                <li class="stackexchange"><a href="' . $options["basic"]["stackexchange"]["url"] . '" target="_blank" title="Stackexchange"><i class="fa fa-stack-exchange fa-2x"></i></a></li>
+                <li class="linkedin"><a href="' . $options["basic"]["linkedin"]["url"] . '" target="_blank" title="LinkedIn"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                <li class="googleplus"><a href="' . $options["basic"]["google"]["url"] . '" target="_blank" title="Google Plus"><i class="fa fa-google-plus fa-2x"></i></a></li>
+                <li class="twitter"><a href="https://www.twitter.com/' . $options["basic"]["twitter"]["user_name"] . '" target="_blank" title="Twitter"><i class="fa fa-twitter fa-2x"></i></a></li>
+                <li class="facebook"><a href="' . $options["basic"]["facebook"]["url"] . '" target="_blank" title="Facebook"><i class="fa fa-facebook fa-2x"></i></a></li>
             </ul>
         </div>';
     }
@@ -175,10 +175,10 @@ class UDSSL_Sidebar{
         $contact = '<div class="clearfix"></div>
         <div class="contact-details">
             <ul class="contact">
-                <li><p><i class="icon-map-marker"></i> <strong>Address:</strong> ' . $options["contact"]["data"]["address"] . '</p></li>
-                <li><p><i class="icon-phone"></i> <strong>Phone:</strong> ' . $options["contact"]["data"]["phone"] . '</p></li>
-                <li><p><i class="icon-envelope"></i> <strong>Email:</strong> <a href="mailto:' . $options["contact"]["data"]["email"] . '">' . $options["contact"]["data"]["email"] . '</a></p></li>
-                <li><p><i class="icon-skype"></i> <strong>Skype:</strong> ' . $options["contact"]["data"]["skype"] . '</p></li>
+                <li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> ' . $options["contact"]["data"]["address"] . '</p></li>
+                <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> ' . $options["contact"]["data"]["phone"] . '</p></li>
+                <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:' . $options["contact"]["data"]["email"] . '">' . $options["contact"]["data"]["email"] . '</a></p></li>
+                <li><p><i class="fa fa-skype"></i> <strong>Skype:</strong> ' . $options["contact"]["data"]["skype"] . '</p></li>
             </ul>
         </div>';
         return $contact;
