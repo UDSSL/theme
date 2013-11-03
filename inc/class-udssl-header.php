@@ -41,12 +41,12 @@ class UDSSL_Header{
         </div>
         <div class="navbar-collapse collapse udssl-main">
           <ul class="nav navbar-nav">
-            <li><a href="' . get_home_url() . '/about/">About</a></li>
+            <li><a rel="nofollow" href="' . get_home_url() . '/about/">About</a></li>
             <li><a href="' . get_home_url() . '/contact/">Contact</a></li>
             <li class="dropdown">
               <a href="' . get_home_url() . '/projects/" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
+                <li><a rel="nofollow" href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
                 <li><a href="' . get_home_url() . '/udssl-time-tracker/">UDSSL Time Tracker</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Control Engineering</li>
@@ -74,12 +74,12 @@ class UDSSL_Header{
         </div>
         <div class="navbar-collapse collapse udssl-nav">
           <ul class="nav navbar-nav">
-            <li><a href="' . get_home_url() . '/universal-serial-bus/">USB</a></li>
-            <li><a href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
+            <li><a rel="nofollow" href="' . get_home_url() . '/universal-serial-bus/">USB</a></li>
+            <li><a rel="nofollow" href="' . get_home_url() . '/udssl-theme/">UDSSL Theme</a></li>
             <li><a href="' . get_home_url() . '/computer-aided-control-systems/">CACS</a></li>
             <li><a href="' . get_home_url() . '/udssl-time-tracker/">Time Tracker</a></li>
             <li><a href="' . get_home_url() . '/telecommunications/">Telecom</a></li>
-            <li><a href="' . get_home_url() . '/store/">Store</a></li>
+            <li><a rel="nofollow" href="' . get_home_url() . '/store/">Store</a></li>
             <li><a href="' . get_home_url() . '/contact/">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->

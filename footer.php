@@ -40,10 +40,10 @@ $options = get_option('udssl_options');
 
 <div class="row" id="footer-bottom">
     <div class="col-md-12">
-        <p class="text-center text-muted"><a href="<?php echo get_home_url(); ?>/about/" >UDSSL</a> <span class="glyphicon glyphicon-copyright-mark"></span> <?php echo date('Y'); ?>
-        | <a href="<?php echo get_home_url(); ?>/content-policy/" >Content Policy</a>
-        | <a href="<?php echo get_home_url(); ?>/privacy-policy/" >Privacy Policy</a>
-        | <a href="<?php echo get_home_url(); ?>/terms-of-service/" >Terms of Service</a>
+        <p class="text-center text-muted"><a rel="nofollow" href="<?php echo get_home_url(); ?>/about/" >UDSSL</a> <span class="glyphicon glyphicon-copyright-mark"></span> <?php echo date('Y'); ?>
+        | <a rel="nofollow" href="<?php echo get_home_url(); ?>/content-policy/" >Content Policy</a>
+        | <a rel="nofollow" href="<?php echo get_home_url(); ?>/privacy-policy/" >Privacy Policy</a>
+        | <a rel="nofollow" href="<?php echo get_home_url(); ?>/terms-of-service/" >Terms of Service</a>
         | <a href="<?php echo get_home_url(); ?>/contact/" >Contact</a></p>
     </div>
 </div>
