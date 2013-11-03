@@ -1,6 +1,11 @@
 <?php
 /**
  * UDSSL Membership
+ *
+ * Levels
+ *  - Basic
+ *  - Gold
+ *  - Platinum
  */
 class UDSSL_Membership{
     /**
@@ -26,6 +31,12 @@ class UDSSL_Membership{
          * Remove Admin Bar
          */
         add_filter('show_admin_bar', '__return_false');
+
+        /**
+         * Content Filter
+         */
+        add_shortcode('membership', array($this, 'membership'));
+
     }
 
     /**
@@ -340,6 +351,40 @@ class UDSSL_Membership{
             unset($_SESSION['registration_error']);
             require_once UDS_PATH . 'register.php';
         }
+    }
+
+    /**
+     * Membership Content Protection
+     */
+    function membership($atts, $content = null){
+        extract( shortcode_atts( array(
+            'level' => 'basic'
+        ), $atts ) );
+        if('basic' == $level && is_user_logged_in()){
+            return $content;
+        } else {
+            $notice = $this->login_signup_notice();
+            return $notice;
+        }
+    }
+
+    /**
+     * Login Signup Callback
+     */
+    function login_signup_notice(){
+        $notice = '
+            <div class="alert alert-warning"><b>Premium Content:</b> You must be logged in to view the content.</div>
+<div class="row" style="min-height: 500px;">
+<div class="col-md-12">
+    <p class="text-center">
+    <a href="http://local.udssl.dev/signup/" class="btn btn-success btn-lg">Sign Up Free</a>
+    <a href="http://local.udssl.dev/login/" class="btn btn-default btn-lg">Login</a>
+    </p>
+    <p class="text-center">Login to view the content. Sign up now. It\'s free!</p>
+</div>
+</div>
+            ';
+        return $notice;
     }
 }
 ?>
