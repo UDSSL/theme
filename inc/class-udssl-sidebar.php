@@ -61,7 +61,7 @@ class UDSSL_Sidebar{
      * UDSSL Single Sidebar Right
      */
     function single_right() {
-        if('udssl-time-tracker' == get_post_type()){
+        if('udssl-time-tracker' == get_post_type() ||  is_page('udssl-time-tracker')){
             /**
              * Plugin Sidebar
              */
@@ -194,10 +194,17 @@ class UDSSL_Sidebar{
             'order' => 'ASC'
         );
         $the_query = new WP_Query( $args );
-        $plugin_pages = '<h2 class="text-primary text-right">UDSSL Time Tracker</h2>';
-        $plugin_pages .= '<p class="text-muted text-right">WordPress Time Tracker Plugin</p>';
-        $plugin_pages .= '<div class="bs-example" style="padding-bottom: 24px; text-align:right;">
-        <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>
+        if(is_page('udssl-time-tracker')){
+            $plugin_pages = '';
+        } else {
+            $plugin_pages = '<h2 class="text-primary text-right"><a title="Home of UDSSL Time Tracker" id="time-tracker-home" href="' . get_home_url()
+                . '/udssl-time-tracker/" >UDSSL Time Tracker <span class="glyphicon glyphicon-home"></span></a></h2>';
+            $plugin_pages .= '<p class="text-muted text-right">The WordPress Time Tracker Plugin</p>';
+        }
+        $plugin_pages .= '<div style="padding-bottom: 24px; text-align:right;">
+        <a href="https://github.com/UDSSL/time-tracker" target="_blank" title="View Source on GitHub" class="btn "><i class="icon-github icon-2x"></i></a>
+        <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>';
+        $plugin_pages .= ' <a href="http://wordpress.org/plugins/udssl-time-tracker/" class="btn btn-success" title="On WordPress.org"> <span class="glyphicon glyphicon-cloud-download"></span> WordPress.Org</a>
         </div>';
         $plugin_pages .= '<ul class="list-group">';
 
@@ -277,8 +284,8 @@ class UDSSL_Sidebar{
                     . get_home_url() . '/assets/slider/udssl-time-tracker-english.png" /></a></li>
                     <li><a href="' . get_home_url() . '/udssl-time-tracker/" ><img title="Track Your Time Easily" src="'
                     . get_home_url() . '/assets/slider/udssl-time-tracker-sinhala.png" /></a></li>
-                    <li><a href="' . get_home_url() . '/projects/water-level-control-system/" ><img title="Computer Aided Water Level Control System" src="'
-                    . get_home_url() . '/assets/slider/water-level-control.png" /></a></li>
+                    <li><a href="' . get_home_url() . '/udssl-time-tracker/" ><img title="Visualize Your Time Data" src="'
+                    . get_home_url() . '/assets/slider/udssl-time-tracker-tamil.png" /></a></li>
                     </ul>
             </div>
             <hr />

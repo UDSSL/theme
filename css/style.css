@@ -167,3 +167,7 @@ a.read-more{
 .cse .gsc-control-cse, .gsc-control-cse {
     padding: 0 !important;
 }
+
+a#time-tracker-home{
+    text-decoration: none;
+}
