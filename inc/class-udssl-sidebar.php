@@ -67,8 +67,8 @@ class UDSSL_Sidebar{
              */
             echo $this->get_plugin_sidebar();
             return true;
-        } elseif(('projects' == get_post_type())) {
-            if(has_term('WLCS', 'udssl-project' ) ) {
+        } elseif('projects' == get_post_type() || is_page('computer-aided-control-systems')) {
+            if(has_term('WLCS', 'udssl-project' ) || is_page('computer-aided-control-systems')) {
                 /**
                  * WLCS Sidebar
                  */
@@ -202,9 +202,9 @@ class UDSSL_Sidebar{
             $plugin_pages .= '<p class="text-muted text-right">The WordPress Time Tracker Plugin</p>';
         }
         $plugin_pages .= '<div style="padding-bottom: 24px; text-align:right;">
-        <a href="https://github.com/UDSSL/time-tracker" target="_blank" title="View Source on GitHub" class="btn "><i class="icon-github icon-2x"></i></a>
+        <a href="' . get_home_url() . '/leave/github.com/UDSSL/time-tracker" title="View Source on GitHub" class="btn "><i class="icon-github icon-2x"></i></a>
         <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>';
-        $plugin_pages .= ' <a href="http://wordpress.org/plugins/udssl-time-tracker/" class="btn btn-success" title="On WordPress.org"> <span class="glyphicon glyphicon-cloud-download"></span> WordPress.Org</a>
+        $plugin_pages .= ' <a href="' . get_home_url() . '/leave/wordpress.org/plugins/udssl-time-tracker/" class="btn btn-success" title="On WordPress.org"> <span class="glyphicon glyphicon-cloud-download"></span> WordPress.Org</a>
         </div>';
         $plugin_pages .= '<ul class="list-group">';
 
