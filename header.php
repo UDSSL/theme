@@ -5,7 +5,7 @@
 $options = get_option('udssl_options');
 global $udssl_theme;
 ?><!DOCTYPE html>
-<html lang="en">
+<html <?php language_attributes(); ?>>
 <head>
     <!-- UDSSL Head -->
     <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -15,7 +15,7 @@ global $udssl_theme;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 <?php include 'google-analytics.php'; ?>
 <div class="container">
     <div class="row">
