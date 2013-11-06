@@ -59,7 +59,7 @@ class UDSSL_Projects{
             'rewrite'           => array( 'slug' => 'udssl-project' ),
         );
 
-        register_taxonomy( 'udssl-project', array( 'projects' ), $args );
+        register_taxonomy( 'udssl-project', array('projects', 'page'), $args );
     }
 }
 ?>
