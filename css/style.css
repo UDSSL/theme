@@ -171,3 +171,7 @@ a.read-more{
 a#time-tracker-home{
     text-decoration: none;
 }
+
+#now-reading-home-button{
+    color: #ccc;
+}
