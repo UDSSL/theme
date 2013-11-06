@@ -76,6 +76,9 @@ class UDSSL_Sidebar{
                 echo $this->get_search_form();
                 return true;
             }
+        } elseif(has_term('Now Reading', 'udssl-project')){
+            echo $this->now_reading_sidebar();
+            return true;
         }
 
         /**
@@ -303,6 +306,48 @@ class UDSSL_Sidebar{
             </script>
             ';
         return $slider;
+    }
+
+    /**
+     * Now Reading Sidebar
+     */
+    function now_reading_sidebar(){
+        $args = array(
+            'post_type' => array('page'),
+            'udssl-project' => 'Now Reading',
+            'posts_per_page' => -1,
+            'order' => 'ASC'
+        );
+        $the_query = new WP_Query( $args );
+        $sidebar = '<p class="text-center" ><a id="now-reading-home-button" href="' . get_home_url() . '/udssl-now-reading/" class="btn btn-lg" title="Now Reading | Home"> <span class="glyphicon glyphicon-home"></span></a></p>';
+        $sidebar .= '<p class="text-center" ><img src="' . get_home_url() . '/assets/udssl-now-reading/now-reading-icon.png" class="img-thumbnail img-rounded"/></p>';
+        $sidebar .= '<h3 class="text-primary text-center">Now Reading</h3>';
+        $sidebar .= '<p class="text-muted text-center">Premium WordPress Plugin</p>';
+        $sidebar .= '<div class="bs-example" style="padding-bottom: 24px; text-align:center;">
+        <a href="' . get_home_url() . '/downloads/udssl-now-reading/" class="btn btn-info" title="Buy Now"> <span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</a>
+        </div>';
+        $sidebar .= '<ul class="list-group">';
+
+        if($the_query->have_posts()){
+            while($the_query->have_posts()){
+                $the_query->the_post();
+                $sidebar .= '<li class="list-group-item">';
+                $sidebar .= '<a href="' . get_permalink() . '" ><h4>';
+                $sidebar .= get_the_title() . '</h4></a>';
+
+                $id = get_the_ID();
+                $seo = get_post_meta($id, 'seo', true);
+                if($seo){
+                    $sidebar .= '<p>' . $seo['description'] . '<br /><span class="label label-info">';
+                }
+
+                $sidebar .= 'NR</span> ' .
+                    '<a class="read-more" href="' . get_permalink() . '" title="' . get_the_title() . '" ><span class="label label-success">Read More</span></a></p>' . PHP_EOL;
+                $sidebar .= '</li>';
+            }
+        }
+        $sidebar .= '</ul>';
+        return $sidebar;
     }
 }
 ?>

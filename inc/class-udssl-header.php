@@ -53,6 +53,15 @@ class UDSSL_Header{
                 <li><a href="' . get_home_url() . '/projects/water-level-control-system/">Computer Aided Water Level Control</a></li>
                 <li><a href="' . get_home_url() . '/projects/remote-and-shared-control/">Remote and Networked Control</a></li>
               </ul>
+            <li class="dropdown">
+              <a href="' . get_home_url() . '/udssl-now-reading/" title="Now Reading | Premium WordPress Plugin" class="dropdown-toggle" data-toggle="dropdown">Now Reading <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="' . get_home_url() . '/udssl-now-reading/">Introduction to UDSSL Now Reading</a></li>
+                <li><a href="' . get_home_url() . '/udssl-now-reading/now-reading-screenshots/">Now Reading Plugin Screenshots</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Live Preview</li>
+                <li><a href="' . get_home_url() . '/udssl-now-reading/now-reading-demonstration/">Demonstration of Now Reading Widget</a></li>
+              </ul>
             </li>
           </ul>
           <ul class="navbar-form navbar-right">' . $member . '</ul>
