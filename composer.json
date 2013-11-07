@@ -1,0 +1,6 @@
+{
+    "name": "udssl/shopping-cart",
+    "require": {
+        "paypal/merchant-sdk-php":"v3.6.106"
+    }
+}
