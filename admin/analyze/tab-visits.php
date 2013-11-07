@@ -32,13 +32,13 @@ function udssl_visits_callback(){
                     <th>Token</th>
                     <th>IP</th>
                     <th>Port</th>
-                    <th>Forwarded</th>
-                    <th>Referer</th>
-                    <th>User Agent</th>
-                    <th>URL</th>
                     <th>Browser</th>
                     <th>OS</th>
+                    <th>Referer</th>
+                    <th>URL</th>
                     <th>Visits</th>
+                    <th>User Agent</th>
+                    <th>Forwarded</th>
                 </tr>
             </thead>
             <tbody>';
@@ -51,13 +51,13 @@ function udssl_visits_callback(){
                     <td>' . $visit['token'] . '</td>
                     <td>' . $visit['ip'] . '</td>
                     <td>' . $visit['port'] . '</td>
-                    <td>' . $visit['forwarded_for'] . '</td>
-                    <td>' . $visit['referer'] . '</td>
-                    <td>' . $visit['user_agent'] . '</td>
-                    <td>' . $visit['url'] . '</td>
                     <td>' . $visit['browser'] . '</td>
                     <td>' . $visit['os'] . '</td>
+                    <td>' . $visit['referer'] . '</td>
+                    <td>' . $visit['url'] . '</td>
                     <td>' . $visit['visits'] . '</td>
+                    <td>' . $visit['user_agent'] . '</td>
+                    <td>' . $visit['forwarded_for'] . '</td>
                 </tr>
             ';
     }
@@ -71,13 +71,13 @@ function udssl_visits_callback(){
                     <th>Token</th>
                     <th>IP</th>
                     <th>Port</th>
-                    <th>Forwarded</th>
-                    <th>Referer</th>
-                    <th>User Agent</th>
-                    <th>URL</th>
                     <th>Browser</th>
                     <th>OS</th>
+                    <th>Referer</th>
+                    <th>URL</th>
                     <th>Visits</th>
+                    <th>User Agent</th>
+                    <th>Forwarded</th>
                 </tr>
             </tfoot>
         </table>

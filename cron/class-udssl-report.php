@@ -46,11 +46,29 @@ class UDSSL_Reports{
 
         $subject = 'UDSSL Visits: ' . $summary;
         $message = '<p>Last: ' . date('Y-m-d H:i:s', $udssl_crons['udssl_report']['last_time']) . '</p>';
-        $message .= '<p>Current: ' . date('Y-m-d H:i:s') . '</p>';
+        $message .= '<p>Current: ' . current_time('mysql') . '</p>';
 
         if($total > 0){
-            $message .= '<table cellspacing="0" cellpadding="10" border="0">';
             $td_style = ' width="80" ';
+            $message .= '<table cellspacing="0" cellpadding="10" border="0">';
+                $message .= '<thead>';
+                $message .= '<tr>';
+                $message .= '<td' . $td_style . '>ID</td>';
+                $message .= '<td' . $td_style . '>Date</td>';
+                $message .= '<td' . $td_style . '>Time</td>';
+                $message .= '<td' . $td_style . '>Token</td>';
+                $message .= '<td' . $td_style . '>IP</td>';
+                $message .= '<td' . $td_style . '>Port</td>';
+                $message .= '<td' . $td_style . '>Brower</td>';
+                $message .= '<td' . $td_style . '>OS</td>';
+                $message .= '<td' . $td_style . '>Referer</td>';
+                $message .= '<td' . $td_style . '>URL</td>';
+                $message .= '<td' . $td_style . '>Visits</td>';
+                $message .= '<td' . $td_style . '>User Agent</td>';
+                $message .= '<td' . $td_style . '>Forwarded</td>';
+                $message .= '</tr>';
+                $message .= '</thead>';
+                $message .= '<tbody>';
             foreach($visits as $visit){
                 $message .= '<tr>';
                 $message .= '<td' . $td_style . '>' . $visit['id'] . '</td>';
@@ -59,15 +77,33 @@ class UDSSL_Reports{
                 $message .= '<td' . $td_style . '>' . $visit['token'] . '</td>';
                 $message .= '<td' . $td_style . '>' . $visit['ip'] . '</td>';
                 $message .= '<td' . $td_style . '>' . $visit['port'] . '</td>';
-                $message .= '<td' . $td_style . '>' . $visit['forwarded_for'] . '</td>';
-                $message .= '<td' . $td_style . '>' . $visit['referer'] . '</td>';
-                $message .= '<td' . $td_style . '>' . $visit['user_agent'] . '</td>';
-                $message .= '<td' . $td_style . '>' . $visit['url'] . '</td>';
                 $message .= '<td' . $td_style . '>' . $visit['browser'] . '</td>';
                 $message .= '<td' . $td_style . '>' . $visit['os'] . '</td>';
+                $message .= '<td' . $td_style . '>' . $visit['referer'] . '</td>';
+                $message .= '<td' . $td_style . '>' . $visit['url'] . '</td>';
                 $message .= '<td' . $td_style . '>' . $visit['visits'] . '</td>';
+                $message .= '<td' . $td_style . '>' . $visit['user_agent'] . '</td>';
+                $message .= '<td' . $td_style . '>' . $visit['forwarded_for'] . '</td>';
                 $message .= '</tr>';
             }
+                $message .= '</tbody>';
+                $message .= '<tfooter>';
+                $message .= '<tr>';
+                $message .= '<td' . $td_style . '>ID</td>';
+                $message .= '<td' . $td_style . '>Date</td>';
+                $message .= '<td' . $td_style . '>Time</td>';
+                $message .= '<td' . $td_style . '>Token</td>';
+                $message .= '<td' . $td_style . '>IP</td>';
+                $message .= '<td' . $td_style . '>Port</td>';
+                $message .= '<td' . $td_style . '>Brower</td>';
+                $message .= '<td' . $td_style . '>OS</td>';
+                $message .= '<td' . $td_style . '>Referer</td>';
+                $message .= '<td' . $td_style . '>URL</td>';
+                $message .= '<td' . $td_style . '>Visits</td>';
+                $message .= '<td' . $td_style . '>User Agent</td>';
+                $message .= '<td' . $td_style . '>Forwarded</td>';
+                $message .= '</tr>';
+                $message .= '</tfooter>';
             $message .= '</table>';
         } else {
             $message .= '<h3>No Visits for the period</h3>';
