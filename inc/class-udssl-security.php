@@ -81,7 +81,7 @@ class UDSSL_Security{
      * Set Cookie
      */
     function set_cookie(){
-        $time = time()+60*60*24*365;
+        $time = current_time('timestamp') + YEAR_IN_SECONDS;
         if(isset($_COOKIE['udssl_token']) && isset($_COOKIE['udssl_visits'])){
             $this->new_visitor = false;
             $this->token = $_COOKIE['udssl_token'];
@@ -98,18 +98,86 @@ class UDSSL_Security{
      * Log Visitor
      */
     function log(){
+        /**
+         * User Agent String
+         */
+        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'None';
+
+        /**
+         * Operating System Database
+         */
+        $os_db = array
+        (
+            '/windows nt 6.2/i'     =>  'Windows 8',
+            '/windows nt 6.1/i'     =>  'Windows 7',
+            '/windows nt 6.0/i'     =>  'Windows Vista',
+            '/windows nt 5.2/i'     =>  'Windows Server 2003/XP x64',
+            '/windows nt 5.1/i'     =>  'Windows XP',
+            '/windows xp/i'         =>  'Windows XP',
+            '/windows nt 5.0/i'     =>  'Windows 2000',
+            '/windows me/i'         =>  'Windows ME',
+            '/win98/i'              =>  'Windows 98',
+            '/win95/i'              =>  'Windows 95',
+            '/win16/i'              =>  'Windows 3.11',
+            '/macintosh|mac os x/i' =>  'Mac OS X',
+            '/mac_powerpc/i'        =>  'Mac OS 9',
+            '/linux/i'              =>  'Linux',
+            '/ubuntu/i'             =>  'Ubuntu',
+            '/iphone/i'             =>  'iPhone',
+            '/ipod/i'               =>  'iPod',
+            '/ipad/i'               =>  'iPad',
+            '/android/i'            =>  'Android',
+            '/blackberry/i'         =>  'BlackBerry',
+            '/webos/i'              =>  'Mobile'
+        );
+
+        /**
+         * Browser Database
+         */
+        $browser_db = array(
+            '/msie/i'       =>  'Internet Explorer',
+            '/firefox/i'    =>  'Firefox',
+            '/safari/i'     =>  'Safari',
+            '/chrome/i'     =>  'Chrome',
+            '/opera/i'      =>  'Opera',
+            '/netscape/i'   =>  'Netscape',
+            '/maxthon/i'    =>  'Maxthon',
+            '/konqueror/i'  =>  'Konqueror',
+            '/mobile/i'     =>  'Handheld Browser'
+        );
+
+        /**
+         * Detect Operating System
+         */
+        $operating_system = 'Unknown';
+        foreach ($os_db as $regex => $os) {
+            if (preg_match($regex, $user_agent)) {
+                $operating_system = $os;
+            }
+        }
+
+        /**
+         * Detect Browser
+         */
+        $visitor_browser = 'Unknown';
+        foreach ($browser_db as $regex => $browser) {
+            if (preg_match($regex, $user_agent)) {
+                $visitor_browser = $browser;
+            }
+        }
+
         $visitor = array(
             'id' => null,
-            'time' => time(),
+            'time' => current_time('timestamp'),
             'token' => $this->token,
             'ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'None',
             'port' => isset($_SERVER['REMOTE_PORT']) ? $_SERVER['REMOTE_PORT'] : '',
             'forwarded_for' => isset($_SERVER['X_FORWARDED_FOR']) ? $_SERVER['X_FORWARDED_FOR'] : 'None',
             'referer' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'None',
-            'user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'None',
+            'user_agent' => $user_agent,
             'url' => isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'None',
-            'browser' => '',
-            'os' => '',
+            'browser' => $visitor_browser,
+            'os' => $operating_system,
             'visits' => $this->visits
         );
 
@@ -165,7 +233,7 @@ class UDSSL_Security{
      */
     function get_visits(){
         global $wpdb;
-        $start = time() - DAY_IN_SECONDS;
+        $start = current_time('timestamp') - DAY_IN_SECONDS;
         $visitor_table = $wpdb->prefix . $this->visitor_table;
         $visits = $wpdb->get_results(
             "
@@ -186,7 +254,7 @@ class UDSSL_Security{
      */
     function get_visits_report($last_index, $limit){
         global $wpdb;
-        $start = time() - DAY_IN_SECONDS;
+        $start = current_time('timestamp') - DAY_IN_SECONDS;
         $visitor_table = $wpdb->prefix . $this->visitor_table;
         $visits = $wpdb->get_results(
             "
