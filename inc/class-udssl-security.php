@@ -71,10 +71,19 @@ class UDSSL_Security{
      * Check Visitor
      */
     function check_visitor(){
-        if(!is_user_logged_in()){
-            $this->set_cookie();
-            $this->log();
-        }
+        /**
+         * Don't Check Logged In Users
+         */
+        if(is_user_logged_in()) return true;
+
+        /**
+         * Don't Check Ajax Requests
+         */
+
+        if(defined('DOING_AJAX') && DOING_AJAX) return true;
+
+        $this->set_cookie();
+        $this->log();
     }
 
     /**
