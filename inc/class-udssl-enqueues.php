@@ -102,7 +102,6 @@ class UDSSL_Enqueues{
         /**
          * Libs
          */
-        wp_enqueue_script('jquery');
         wp_enqueue_script('bootstrap', UDS_URL . 'lib/bootstrap/js/bootstrap.min.js', array('jquery'), false, true );
 
         /**

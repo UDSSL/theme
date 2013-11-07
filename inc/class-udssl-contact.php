@@ -158,6 +158,7 @@ class UDSSL_Contact{
     function enqueues(){
         wp_enqueue_script( 'jquery-validate', UDS_URL . 'lib/jquery-validate/jquery.validate.min.js', array('jquery'), false, true );
         wp_enqueue_script( 'contact-us', UDS_URL . 'js/contact.js', array('jquery', 'jquery-validate'), false, true );
+        wp_enqueue_script( 'mapmaker', UDS_URL . 'lib/mapmaker/jquery.mapmarker.js', array('jquery'), false, true );
         $udssl_js = array(
           'contact_url' => get_home_url() . '/contact/'
         );
@@ -172,7 +173,6 @@ class UDSSL_Contact{
         $options = get_option('udssl_options');
         $options = $options['contact']['map'];
 		$map = '<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-            <script src="' . UDS_URL . 'vendor/jquery.mapmarker.js"></script>
 
             <script>
                 jQuery(document).ready(function() {
