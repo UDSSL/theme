@@ -50,12 +50,12 @@ class UDSSL_WPTheme{
      * UDSSL Entry Meta Footer
      */
     function entry_meta_footer() {
-        $meta = '<hr /><div class="entry-meta text-center">
+        $meta = '<hr /><div class="entry-meta text-right">
             <span class="date">
                 <a href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( sprintf( __( 'Permalink to %s', 'udssl' ), the_title_attribute( 'echo=0' ) ) ) . '" rel="bookmark">
-                    <time class="entry-date" datetime="' . esc_attr( get_the_date( 'c' ) ) . '">' . esc_html( get_the_date() ) . '</time>
-                </a> </span> <span class="author vcard"><span class="text-muted">| By </span><a
-                class="url fn n" href="https://plus.google.com/u/0/102763545776466339141" title="View Google Profile of Praveen Dias" rel="author">Praveen Dias</a>
+                    <i><time class="entry-date text-muted" datetime="' . esc_attr( get_the_date( 'c' ) ) . '">' . esc_html( get_the_date() ) . '</time></i>
+                </a> </span> <span class="author vcard"><span class="text-muted"> </span><a
+                class="url fn n text-muted" href="https://plus.google.com/u/0/102763545776466339141" title="View Google Profile of Praveen Dias" rel="author"><i>Praveen Dias</i></a>
             </span>
         </div><hr />';
         echo $meta;

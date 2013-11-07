@@ -47,7 +47,8 @@ class UDSSL_Enqueues{
      * UDSSL Head Top
      */
     function wp_head_top(){
-        $head_top = '<title>' . wp_title( '|', false, 'right' ) . '</title>';
+        $title = $this->udssl_wp_title('', '|');
+        $head_top = '<title>' . $title . '</title>';
 
         /**
          * Override the defaults

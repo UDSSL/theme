@@ -25,7 +25,7 @@ global $udssl_theme;
     </div>
     <div class="row">
         <div class="col-md-8">
-            <a href="<?php echo home_url(); ?>" ><img class="img-centered img-responsive" src="<? echo UDS_URL; ?>assets/udssl-logo.png" alt="UDSSL Logo" /></a>
+            <a href="<?php echo home_url(); ?>" ><img class="img-left img-responsive" src="<? echo UDS_URL; ?>assets/udssl-header-logo.png" alt="UDSSL Logo" /></a>
         </div>
         <div class="col-md-4">
             <div class="row">
@@ -45,6 +45,7 @@ global $udssl_theme;
     </div>
     <div class="row">
         <div class="col-md-12">
-            <?php echo $udssl_theme->header->main_navigation(); ?>
+            <hr />
+            <?php //echo $udssl_theme->header->main_navigation(); ?>
         </div>
     </div>
