@@ -37,7 +37,7 @@ class UDSSL_Store_Database{
             last_name varchar(30) not null,
             payer_id varchar(30) not null,
             count int default 0,
-            description varchar(80) not null
+            description varchar(80) not null,
             link varchar(300) not null
         )
         engine = InnoDB default character set = utf8 collate = utf8_unicode_ci;";
