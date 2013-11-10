@@ -33,9 +33,6 @@ $options = get_option('udssl_options');
             </div>
         </div>
     </div>
-    <p id="back-top">
-        <a href="#top"><span></span></a>
-    </p>
 </div> <!-- /container -->
 
 <div class="row" id="footer-bottom">
@@ -50,5 +47,8 @@ $options = get_option('udssl_options');
     </div>
 </div>
 <?php wp_footer(); ?>
+<p id="back-top">
+    <a href="#top"><span></span></a>
+</p>
 </body>
 </html>

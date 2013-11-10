@@ -22,6 +22,13 @@ class UDSSL_Session{
     function session_init(){
         session_start();
         $session_id = session_id();
+
+        /**
+         * Set Test Cart
+         */
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart']= array();
+        }
     }
 
     /**

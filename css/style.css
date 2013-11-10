@@ -173,3 +173,12 @@ a#time-tracker-home{
 #now-reading-home-button{
     color: #ccc;
 }
+
+.store-price, .store-downloads{
+    font-size: 15px;
+}
+
+.cart-td{
+    padding-top: 15px !important;
+    font-size: 16px;
+}

@@ -47,7 +47,7 @@ class UDSSL_Sitemap{
      */
     function output_xml_sitemap(){
         $args = array(
-            'post_type' => array('post', 'page', 'projects', 'udssl-time-tracker'),
+            'post_type' => array('post', 'page', 'projects', 'udssl-time-tracker', 'products'),
             'posts_per_page' => -1
         );
         $the_query = new WP_Query( $args );

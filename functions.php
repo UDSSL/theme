@@ -139,6 +139,11 @@ class UDSSL_Theme{
     public $router;
 
     /**
+     * Store
+     */
+    public $store;
+
+    /**
      * Constructor
      */
     function __construct(){
@@ -221,6 +226,9 @@ class UDSSL_Theme{
 
         require UDS_PATH . 'inc/class-udssl-router.php';
         $this->router = new UDSSL_Router();
+
+        require UDS_PATH . 'store/class-udssl-store.php';
+        $this->store = new UDSSL_Store();
     }
 
     /**
@@ -250,6 +258,11 @@ class UDSSL_Theme{
         $this->downloads->download_rewrite();
         $this->router->router_rewrite();
 
+        /**
+         * UDSSL Store Installation
+         */
+        $this->store->install();
+
         flush_rewrite_rules();
     }
 
@@ -259,6 +272,11 @@ class UDSSL_Theme{
     function uninstall(){
         $this->cron->dectivation();
         flush_rewrite_rules();
+
+        /**
+         * Delete All Options
+         */
+        delete_option('udssl_store_options');
     }
 }
 

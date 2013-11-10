@@ -21,11 +21,31 @@ class UDSSL_Header{
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-1x"></i> Login <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="' . get_home_url() . '/login/"><i class="fa fa-sign-in"></i> Login</a></li>
-                    <li><a href="' . get_home_url() . '/signup/"><i class="fa fa-credit-card"></i> Sign Up Free</a></li>
+                    <li><a class="text-right" href="' . get_home_url() . '/login/">Login <i class="fa fa-sign-in"></i></a></li>
+                    <li><a class="text-right" href="' . get_home_url() . '/signup/">Sign Up Free <i class="fa fa-edit"></i></a></li>
                 </ul>
             </li>
             ';
+        }
+
+        if(!isset($_SESSION['cart']) || sizeof($_SESSION['cart']) == 0){
+            $cart_items = '';
+            $cart_items_description = ' (Empty) ';
+        } elseif(1 == sizeof($_SESSION['cart'])) {
+            $cart_items = '(' . sizeof($_SESSION['cart']) . ') ';
+            $cart_items_description = '(' . sizeof($_SESSION['cart']) . ' Item) ';
+        } else {
+            $cart_items = '(' . sizeof($_SESSION['cart']) . ') ';
+            $cart_items_description = '(' . sizeof($_SESSION['cart']) . ' Items) ';
+        }
+
+        /**
+         * Downloads Link
+         */
+        if(isset($_SESSION['downloads_url'])){
+                $downloads_link = '<li><a class="text-right" href="' . ($_SESSION['downloads_url']) . '">Downloads <i class="fa fa-download"></i></a></li>';
+        } else {
+                $downloads_link = '';
         }
 
         return '
@@ -102,10 +122,11 @@ class UDSSL_Header{
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Cart ' . $cart_items . ' <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="text-muted">(Empty Cart)</i> 0.00 <i class="fa fa-usd"></i></a></li>
-                                <li><a class="text-right" href="#"><i class="fa fa-credit-card"></i> Store</a></li>
+                                <li><a class="text-right" href="' . get_home_url() . '/store/cart/">Cart ' . $cart_items_description . ' <i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a class="text-right" href="' . get_home_url() . '/store/">UDSSL Store <i class="fa fa-building"></i></a></li>
+                                ' . $downloads_link . '
                             </ul>
                         </li>
                         ' . $member . '

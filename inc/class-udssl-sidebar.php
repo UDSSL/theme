@@ -52,9 +52,89 @@ class UDSSL_Sidebar{
     }
 
     /**
-     * UDSSL Single Sidebar Left
+     * UDSSL Store Sidebar Right
      */
-    function single_left() {
+    function store_right(){
+        echo $this->get_search_form();
+        global $wp_query;
+        if($wp_query->query_vars['store_page'] == 'store'){
+            echo $this->get_mini_cart();
+        }
+        if($wp_query->query_vars['store_page'] == 'cart'){
+            echo '<hr />';
+            echo '<p class="text-right">
+                <a href="' . get_home_url() . '/store/" class="btn btn-info btn-lg">Visit <b>Store</b> <i class="fa fa-building fa-3x"></i></a>
+                </p>';
+        }
+    }
+
+    /**
+     * UDSSL Mini Cart
+     */
+    function get_mini_cart(){
+        $cart = '<hr /><h4 class="text-info text-right">UDSSL Shopping Cart <i class="fa fa-shopping-cart fa-2x"></i></h4>';
+        if(!isset($_SESSION['cart']) || sizeof($_SESSION['cart']) == 0){
+            $cart .= '<h4 class="text-right text-muted" ><i>Your Cart is <b>Empty</b></i></h3>';
+            $cart .= '<h4 class="text-right text-info" ><i class="fa fa-hand-o-left fa-2x"></i> Add to <b>Cart</b></h4>';
+        } else {
+            /**
+             * Table Header
+             */
+            $cart .= '<table id="udssl-cart" class="table table-responsive table-hover">';
+            $cart .= '<thead>';
+                $cart .= '<tr>';
+                    $cart .= '<th>Product</th>';
+                    $cart .= '<th>Quantity</th>';
+                    $cart .= '<th class="text-right">Price</th>';
+                $cart .= '</tr>';
+            $cart .= '</thead>';
+            $cart .= '<body>';
+
+            $index = 1;
+            $total = 0;
+            foreach($_SESSION['cart'] as $product_name => $quantity){
+                $products = get_posts('post_type=products&name=' . $product_name);
+                if(!$products) wp_die('Something is wrong!');
+
+                $product = $products[0];
+                $product_meta = get_post_meta($product->ID, 'product_data', true);
+                $rate = $product_meta['price'];
+                $price = $rate * $quantity;
+                $total += $price;
+
+                $cart .= '<tr>';
+                $cart .= '<td>' . $product_name . '</td>';
+                $cart .= '<td>' . $quantity . '</td>';
+                $cart .= '<td class="text-right">' . $price . '</td>';
+                $cart .= '</tr>';
+                $index++;
+            }
+
+                /**
+                 * Total
+                 */
+                $cart .= '<tr>';
+                $cart .= '<td></td>';
+                $cart .= '<td><b>Total</b></td>';
+                $cart .= '<td class="text-right"><b><span class="text-muted">USD</span> ' . $total . '</b></td>';
+                $cart .= '</tr>';
+
+                /**
+                 * Checkout
+                 */
+                $cart .= '<tr>';
+                $cart .= '<td colspan="2"></td>';
+                $checkout_url = '<a href="' . home_url() . '/store/cart/" class="btn btn-default" title="View Cart">View Cart <i class="fa fa-shopping-cart"></i></a>';
+                $cart .= '<td>' . $checkout_url . '</td>';
+                $cart .= '</tr>';
+
+            /**
+             * Table Footer
+             */
+            $cart .= '</body>';
+            $cart .= '</table>';
+        }
+        return $cart;
     }
 
     /**
@@ -206,7 +286,7 @@ class UDSSL_Sidebar{
         }
         $plugin_pages .= '<div style="padding-bottom: 24px; text-align:right;">
         <a href="' . get_home_url() . '/leave/github.com/UDSSL/time-tracker" title="View Source on GitHub" class="btn "><i class="fa fa-github fa-2x"></i></a>
-        <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>';
+        <a href="' . get_home_url() . '/downloads/udssl-time-tracker/" rel="nofollow" class="btn btn-info" title="Download Now. It\'s Free!"> <span class="glyphicon glyphicon-cloud-download"></span> Download</a>';
         $plugin_pages .= ' <a href="' . get_home_url() . '/leave/wordpress.org/plugins/udssl-time-tracker/" class="btn btn-success" title="On WordPress.org"> <span class="glyphicon glyphicon-cloud-download"></span> WordPress.Org</a>
         </div>';
         $plugin_pages .= '<ul class="list-group">';
@@ -324,7 +404,7 @@ class UDSSL_Sidebar{
         $sidebar .= '<h3 class="text-primary text-center">Now Reading</h3>';
         $sidebar .= '<p class="text-muted text-center">Premium WordPress Plugin</p>';
         $sidebar .= '<div class="bs-example" style="padding-bottom: 24px; text-align:center;">
-        <a href="' . get_home_url() . '/downloads/udssl-now-reading/" class="btn btn-info" title="Buy Now"> <span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</a>
+        <a href="http://codecanyon.net/item/udssl-now-reading-wordpress-widget/6058309?ref=UDSSL" class="btn btn-info" title="Buy Now - CodeCanyon"> <span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</a>
         </div>';
         $sidebar .= '<ul class="list-group">';
 

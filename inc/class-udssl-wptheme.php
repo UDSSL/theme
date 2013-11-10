@@ -50,6 +50,7 @@ class UDSSL_WPTheme{
      * UDSSL Entry Meta Footer
      */
     function entry_meta_footer() {
+        if(has_term('Store', 'udssl-project')) return true;
         $meta = '<hr /><div class="entry-meta text-right">
             <span class="date">
                 <a href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( sprintf( __( 'Permalink to %s', 'udssl' ), the_title_attribute( 'echo=0' ) ) ) . '" rel="bookmark">

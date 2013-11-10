@@ -18,7 +18,7 @@ class UDSSL_Plugin_Pages{
             'name'          => __('Plugin Pages', 'udssl'),
             'singular_name' => __('Plugin Page', 'udssl'),
             'add_new'       => __('Add Plugin Page', 'udssl'),
-            'view_item'     => __('View Plugin Page Page', 'udssl'),
+            'view_item'     => __('View Plugin Page', 'udssl'),
             'add_new_item'  => __('Add New Plugin Page', 'udssl'),
             'edit_item'     => __('Edit Plugin Page', 'udssl')
         );
