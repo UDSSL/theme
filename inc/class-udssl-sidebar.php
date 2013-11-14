@@ -156,6 +156,9 @@ class UDSSL_Sidebar{
                 echo $this->get_search_form();
                 return true;
             }
+        } elseif(has_term('Vim', 'udssl-project')){
+            echo $this->vim_sidebar();
+            return true;
         } elseif(has_term('Now Reading', 'udssl-project')){
             echo $this->now_reading_sidebar();
             return true;
@@ -428,6 +431,42 @@ class UDSSL_Sidebar{
         }
         $sidebar .= '</ul>';
         return $sidebar;
+    }
+
+    /**
+     * Vim Sidebar
+     */
+    function vim_sidebar(){
+        $args = array(
+            'post_type' => array('page'),
+            'udssl-project' => 'Vim',
+            'posts_per_page' => -1,
+            'order' => 'ASC'
+        );
+        $the_query = new WP_Query( $args );
+        $vim = '<p class="text-center" ><img alt="Vim Editor Logo" title="Vim Editor Logo" src="' . get_home_url() . '/assets/vim/vim-logo.png" class="img-centered img-responsive"/></p>';
+        $vim .= '<ul class="list-group">';
+
+        if($the_query->have_posts()){
+            while($the_query->have_posts()){
+                $the_query->the_post();
+                $vim .= '<li class="list-group-item">';
+                $vim .= '<a href="' . get_permalink() . '" ><h4>';
+                $vim .= get_the_title() . '</h4></a>';
+
+                $id = get_the_ID();
+                $seo = get_post_meta($id, 'seo', true);
+                if($seo){
+                    $vim .= '<p>' . $seo['description'] . '<br /><span class="label label-info">';
+                }
+
+                $vim .= 'NR</span> ' .
+                    '<a class="read-more" href="' . get_permalink() . '" title="' . get_the_title() . '" ><span class="label label-success">Read More</span></a></p>' . PHP_EOL;
+                $vim .= '</li>';
+            }
+        }
+        $vim .= '</ul>';
+        return $vim;
     }
 }
 ?>
