@@ -69,6 +69,9 @@ class UDSSL_Header{
                                 <li class="divider"></li>
                                 <li class="dropdown-header">USB History</li>
                                 <li><a href="' . get_home_url() . '/usb-history/">USB History</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Tachometer Project</li>
+                                <li><a href="' . get_home_url() . '/digital-tachometer/">Design of a Digital Tachometer</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -92,6 +95,9 @@ class UDSSL_Header{
                                 <li class="divider"></li>
                                 <li class="dropdown-header">Premium Content</li>
                                 <li><a href="' . get_home_url() . '/sri-lanka-telecom/">Sri Lanka Telecom PLC</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">WSN Project</li>
+                                <li><a href="' . get_home_url() . '/wireless-sensor-networks/">Wireless Sensor Networks</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
