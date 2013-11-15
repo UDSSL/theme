@@ -377,8 +377,8 @@ class UDSSL_Membership{
 <div class="row" style="min-height: 500px;">
 <div class="col-md-12">
     <p class="text-center">
-    <a href="http://local.udssl.dev/signup/" class="btn btn-success btn-lg">Sign Up Free</a>
-    <a href="http://local.udssl.dev/login/" class="btn btn-default btn-lg">Login</a>
+    <a href="' . get_home_url() . '/signup/" class="btn btn-success btn-lg">Sign Up Free</a>
+    <a href="' . get_home_url() . '/login/" class="btn btn-default btn-lg">Login</a>
     </p>
     <p class="text-center">Login to view the content. Sign up now. It\'s free!</p>
 </div>
