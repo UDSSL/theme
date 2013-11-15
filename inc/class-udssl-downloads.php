@@ -43,26 +43,29 @@ class UDSSL_Downloads{
         $item = $wp_query->query_vars['udssl_download_item'];
         $file = ABSPATH . 'downloads/' . $item;
 
-        if(!is_readable($file)){
-            /**
-             * UDSSL Time Tracker Plugin
-             */
-            if('udssl-time-tracker' == $item){
-                $url = get_home_url() . '/leave/github.com/UDSSL/time-tracker/archive/v.0.1.zip/';
-                wp_redirect($url);
-                exit;
-            }
-
-            global $udssl_theme;
-            $item_id = $udssl_theme->store->database->paypal_get_item_id_by_link($item);
-            if($item_id){
-                $udssl_theme->store->database->decrease_count_by_link($item);
-                $this->digital_download($item_id);
-            }
-
-
-            wp_die('UDSSL: Download Error');
+        /**
+         * UDSSL Time Tracker Plugin
+         */
+        if('udssl-time-tracker' == $item){
+            $url = get_home_url() . '/leave/github.com/UDSSL/time-tracker/archive/v.0.1.zip/';
+            wp_redirect($url);
+            exit;
         }
+
+        global $udssl_theme;
+        $item_id = $udssl_theme->store->database->paypal_get_item_id_by_link($item);
+        if($item_id){
+            $udssl_theme->store->database->decrease_count_by_link($item);
+            $this->digital_download($item_id);
+        }
+
+        if(!is_user_logged_in()){
+            require_once UDS_PATH . 'subscribe.php';
+            exit;
+        }
+
+        wp_die('UDSSL: Download Error');
+
     }
 
     /**
