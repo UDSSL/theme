@@ -460,7 +460,7 @@ class UDSSL_Sidebar{
                     $vim .= '<p>' . $seo['description'] . '<br /><span class="label label-info">';
                 }
 
-                $vim .= 'NR</span> ' .
+                $vim .= 'Vim</span> ' .
                     '<a class="read-more" href="' . get_permalink() . '" title="' . get_the_title() . '" ><span class="label label-success">Read More</span></a></p>' . PHP_EOL;
                 $vim .= '</li>';
             }
