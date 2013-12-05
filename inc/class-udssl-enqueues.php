@@ -157,6 +157,17 @@ class UDSSL_Enqueues{
 		<meta property="fb:app_id" content=""/>
 		<meta property="og:description" content="UDSSL"/>
 		-->
+
+        <!-- Google Publisher and Google+ Javascript API -->
+        <link href="https://plus.google.com/105106310392294461938" rel="publisher" />
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+            po.src = "https://apis.google.com/js/plusone.js?publisherid=105106310392294461938";
+            var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+
         <?php
     }
 
