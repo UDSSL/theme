@@ -243,8 +243,8 @@ class UDSSL_Sidebar{
         return '<div class="social-icons">
             <ul class="social-icons">
                 <li class="github"><a href="' . $options["basic"]["github"]["url"] . '" target="_blank" title="GitHub"><i class="fa fa-github fa-2x text-muted"></i></a></li>
-                <li class="youtube"><a href="' . $options["basic"]["youtube"]["url"] . '" target="_blank" title="YouTube"><i class="fa fa-youtube fa-2x text-muted"></i></a></li>
-                <li class="stackexchange"><a href="' . $options["basic"]["stackexchange"]["url"] . '" target="_blank" title="Stackexchange"><i class="fa fa-stack-exchange fa-2x text-muted"></i></a></li>
+                <!-- <li class="youtube"><a href="' . $options["basic"]["youtube"]["url"] . '" target="_blank" title="YouTube"><i class="fa fa-youtube fa-2x text-muted"></i></a></li>
+                <li class="stackexchange"><a href="' . $options["basic"]["stackexchange"]["url"] . '" target="_blank" title="Stackexchange"><i class="fa fa-stack-exchange fa-2x text-muted"></i></a></li> -->
                 <li class="linkedin"><a href="' . $options["basic"]["linkedin"]["url"] . '" target="_blank" title="LinkedIn"><i class="fa fa-linkedin fa-2x text-muted"></i></a></li>
                 <li class="googleplus"><a href="' . $options["basic"]["google"]["url"] . '" target="_blank" title="Google Plus"><i class="fa fa-google-plus fa-2x text-muted"></i></a></li>
                 <li class="twitter"><a href="https://www.twitter.com/' . $options["basic"]["twitter"]["user_name"] . '" target="_blank" title="Twitter"><i class="fa fa-twitter fa-2x text-muted"></i></a></li>
@@ -407,7 +407,7 @@ class UDSSL_Sidebar{
         $sidebar .= '<h3 class="text-primary text-center">Now Reading</h3>';
         $sidebar .= '<p class="text-muted text-center">Premium WordPress Plugin</p>';
         $sidebar .= '<div class="bs-example" style="padding-bottom: 24px; text-align:center;">
-        <a href="http://codecanyon.net/item/udssl-now-reading-wordpress-widget/6058309?ref=UDSSL" class="btn btn-info" title="Buy Now - CodeCanyon"> <span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</a>
+        <a href="' . get_home_url() . '/downloads/udssl-now-reading/" rel="nofollow"  class="btn btn-info" title="View On GitHub"> <span class="glyphicon glyphicon-github"></span> View On GitHub</a>
         </div>';
         $sidebar .= '<ul class="list-group">';
 

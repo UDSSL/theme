@@ -52,6 +52,16 @@ class UDSSL_Downloads{
             exit;
         }
 
+        /**
+         * UDSSL Now Reading Plugin
+         */
+        if('udssl-now-reading' == $item){
+            $url = get_home_url() . '/leave/github.com/UDSSL/now-reading/';
+            wp_redirect($url);
+            exit;
+        }
+
+
         global $udssl_theme;
         $item_id = $udssl_theme->store->database->paypal_get_item_id_by_link($item);
         if($item_id){
