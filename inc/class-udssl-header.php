@@ -65,8 +65,8 @@ class UDSSL_Header{
                             <!-- ---------------------- USB ---------------------------------------- -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-thumbs-up"></i> USB <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Universal Serial Bus</a></li>
-                                <li class="divider"></li>
+                                <!-- <li><a href="#">Universal Serial Bus</a></li>
+                                <li class="divider"></li> -->
                                 <li class="dropdown-header">USB History</li>
                                 <li><a href="' . get_home_url() . '/usb-history/">USB History</a></li>
                                 <li class="divider"></li>
@@ -107,8 +107,8 @@ class UDSSL_Header{
                             <!-- ---------------------- Web ---------------------------------------- -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-trophy"></i> Web <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                            <li><a href="#">UDSSL WordPress Theme</a></li>
-                            <li class="divider"></li>
+                            <!-- <li><a href="#">UDSSL WordPress Theme</a></li>
+                            <li class="divider"></li> -->
                             <li class="dropdown-header">Now Reading WordPress Plugin</li>
                             <li><a href="' . get_home_url() . '/udssl-now-reading/">Introduction to UDSSL Now Reading</a></li>
                             <li><a href="' . get_home_url() . '/udssl-now-reading/now-reading-screenshots/">Now Reading Plugin Screenshots</a></li>
@@ -124,14 +124,15 @@ class UDSSL_Header{
                             <!-- ---------------------- Misc ---------------------------------------- -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flask"></i> Misc <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">GNU/Linux</a></li>
-                                <li class="divider"></li>
+                                <!-- <li><a href="#">GNU/Linux</a></li>
+                                <li class="divider"></li> -->
                                 <li class="dropdown-header">The Model Editor</li>
                                 <li><a href="' . get_home_url() . '/vim-editor/">Vim Editor</a></li>
                                 <li><a href="' . get_home_url() . '/vim-editor/vimrc/">.vimrc File</a></li>
-                                <li class="divider"></li>
+                                <li><a href="' . get_home_url() . '/vim-editor/vim-fugitive/">Vim Fugitive</a></li>
+                                <!-- <li class="divider"></li>
                                 <li class="dropdown-header">Freelance</li>
-                                <li><a href="#">Python</a></li>
+                                <li><a href="#">Python</a></li> -->
                             </ul>
                         </li>
                         <li><a href="' . get_home_url() . '/contact/"><i class="fa fa-comments"></i> Contact</a></li>
