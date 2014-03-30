@@ -130,6 +130,9 @@ class UDSSL_Header{
                                 <li><a href="' . get_home_url() . '/vim-editor/">Vim Editor</a></li>
                                 <li><a href="' . get_home_url() . '/vim-editor/vimrc/">.vimrc File</a></li>
                                 <li><a href="' . get_home_url() . '/vim-editor/vim-fugitive/">Vim Fugitive</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Building Construction</li>
+                                <li><a href="' . get_home_url() . '/hilti/">Hilti Sri Lanka</a></li>
                                 <!-- <li class="divider"></li>
                                 <li class="dropdown-header">Freelance</li>
                                 <li><a href="#">Python</a></li> -->
