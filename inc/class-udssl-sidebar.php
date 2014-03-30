@@ -159,6 +159,9 @@ class UDSSL_Sidebar{
         } elseif(has_term('Vim', 'udssl-project')){
             echo $this->vim_sidebar();
             return true;
+        } elseif(has_term('Hilti', 'udssl-project')){
+            echo $this->hilti_sidebar();
+            return true;
         } elseif(has_term('Now Reading', 'udssl-project')){
             echo $this->now_reading_sidebar();
             return true;
